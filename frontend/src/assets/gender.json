@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "type": "F",
+        "label": "Feminin"
+    },
+    {
+        "id": 2,
+        "type": "M",
+        "label": "Masculin"
+    },
+    {
+        "id": 3,
+        "type": "preferNotToSay",
+        "label": "Autre/Ne souhaite pas répondre"
+    }
+]

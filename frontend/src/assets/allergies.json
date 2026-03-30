@@ -1,0 +1,21 @@
+[
+  { "id": 1, "label": "Arachides", "value": "Arachides" },
+  { "id": 2, "label": "Fruits à coque (noix, amandes, noisettes, etc.)", "value": "Fruits à coque" },
+  { "id": 3, "label": "Lait", "value": "Lait" },
+  { "id": 4, "label": "Œufs", "value": "Œufs" },
+  { "id": 5, "label": "Poisson", "value": "Poisson" },
+  { "id": 6, "label": "Crustacés", "value": "Crustacés" },
+  { "id": 7, "label": "Soja", "value": "Soja" },
+  { "id": 8, "label": "Gluten", "value": "Gluten" },
+  { "id": 9, "label": "Sésame", "value": "Sésame" },
+  { "id": 10, "label": "Moutarde", "value": "Moutarde" },
+  { "id": 11, "label": "Céleri", "value": "Céleri" },
+  { "id": 12, "label": "Lupin", "value": "Lupin" },
+  { "id": 13, "label": "Mollusques", "value": "Mollusques" },
+  { "id": 14, "label": "Sulfites", "value": "Sulfites" }
+]
+
+
+
+
+

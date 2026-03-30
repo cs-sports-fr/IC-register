@@ -1,0 +1,3 @@
+ALTER TABLE "Participant"
+ADD COLUMN "licenceLink" TEXT,
+ADD COLUMN "licenceOK" BOOLEAN NOT NULL DEFAULT false;

@@ -1,0 +1,23 @@
+[tool.black]
+line-length = 80
+extend-exclude = "tmp/"
+
+[tool.isort]
+profile = "black"
+line_length = 80
+known_first_party = "infra,routes,shared"
+sections = "FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+
+[tool.mypy]
+exclude = "tmp/"
+mypy_path = ["src/", "backend/src/"]
+explicit_package_bases = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+strict_equality = true
+extra_checks = true
+
+[[tool.mypy.overrides]]
+module = ["transformers"]
+ignore_missing_imports = true

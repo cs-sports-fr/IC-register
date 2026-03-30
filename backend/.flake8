@@ -1,0 +1,10 @@
+[flake8]
+max-line-length = 80
+extend-ignore =
+    # replace max-length rules by the flake8-length plugin
+    E501, W505,
+    # compatibility with black
+    E203,
+    #line break before binary operator
+    W503,
+extend-exclude = tmp

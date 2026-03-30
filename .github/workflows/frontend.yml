@@ -1,0 +1,70 @@
+name: Deploy Frontend to s3
+on:
+  push:
+    tags:
+      - "frontend-v*.*.*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8.15.2
+
+      - name: Install Dependencies
+        working-directory: frontend
+        run: pnpm install
+
+      - name: Create .env file from GitHub Secret
+        working-directory: frontend
+        run: |
+          echo "${{ secrets.FRONTEND_ENV }}" > .env
+        env:
+          FRONTEND_ENV: ${{ secrets.FRONTEND_ENV }}
+
+      - name: Build
+        working-directory: frontend
+        run: pnpm build
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: frontend/dist
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          path: frontend/dist
+
+      - name: Deploy to AWS S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: "toss-register.bds-cs.fr"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          AWS_REGION: "eu-west-3"
+          SOURCE_DIR: "frontend/dist"

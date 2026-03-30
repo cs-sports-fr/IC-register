@@ -1,0 +1,46 @@
+name: Deploy Backend to EC2
+
+on:
+  push:
+    tags:
+      - "backend-v*.*.*"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Extract version tag
+        id: vars
+        run: echo "::set-output name=version::${GITHUB_REF#refs/tags/}"
+
+      - name: Copy env file
+        run: |
+          echo '${{ secrets.BACKEND_ENV }}' > .env
+        env:
+          BACKEND_ENV: ${{ secrets.BACKEND_ENV }}
+      
+      - name: Copy project files to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          source: "./backend.Dockerfile, ./docker-compose-prod.yml, ./backend, ./schema.prisma, .env"
+          target: "/home/ec2-user/toss-register"
+
+      - name: Run docker-compose up
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/ec2-user/toss-register
+            sudo docker-compose -f docker-compose-prod.yml down backend || true
+            sudo docker-compose -f docker-compose-prod.yml up --build backend -d

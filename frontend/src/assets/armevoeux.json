@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "type": "Epee",
+        "label": "Epee"
+    },
+    {
+        "id": 2,
+        "type": "Fleuret",
+        "label": "Fleuret"
+    },
+    {
+        "id": 3,
+        "type": "Sabre",
+        "label": "Sabre"
+    }
+]

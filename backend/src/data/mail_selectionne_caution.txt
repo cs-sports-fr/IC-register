@@ -1,0 +1,15 @@
+Accord d'hebergement TOSS
+
+Nous sommes l’équipe organisatrice du TOSS et nous te contactons car ${FIRSTNAME} s’est inscrit.e en
+choisissant le pack hébergement en résidence et t’as inscrit.e comme étant la personne qui allait
+l'héberger.
+
+Si cela est-bien le cas, peux-tu nous le confirmer en envoyant un email à l’adresse
+hebergement@cs-sports.fr , en joignant l'accord d'hébergement</a>
+complété. Nous te prions également de mettre pour objet à ce mail « Hebergeur_Nom_Prénom »
+
+Accord d'hebergement : https://cs-sports.fr/toss-register/accord%20hebergement.pdf
+
+Si tu n'es pas à l'origine de cette demande, merci de contacter l'équipe informatique
+Gros gros bisous,
+L'équipe du toss

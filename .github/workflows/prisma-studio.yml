@@ -1,0 +1,59 @@
+name: Deploy Prisma to EC2 and Migrate DB
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Copy env file
+        run: |
+          echo '${{ secrets.BACKEND_ENV }}' > .env
+        env:
+          BACKEND_ENV: ${{ secrets.BACKEND_ENV }}
+
+      - name: Copy project files to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST_PRISMA_STUDIO }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          source: "./prisma.Dockerfile, ./prisma-migrate.Dockerfile, ./migrations, ./docker-compose-prod.yml, ./schema.prisma, .env"
+          target: "/home/ec2-user/toss-register-prisma-studio"
+
+      - name: Clean up Docker and Free Space on EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST_PRISMA_STUDIO }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            sudo docker system prune -af
+            df -h
+            
+      - name: Deploy the prisma studio and migrate
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST_PRISMA_STUDIO }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/ec2-user/toss-register-prisma-studio
+            sudo docker-compose -f docker-compose-prod.yml down prisma-migrate || true
+            sudo docker-compose -f docker-compose-prod.yml up --build prisma-migrate -d
+
+
+      - name: Check Docker Containers Status
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST_PRISMA_STUDIO }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            sudo docker ps -a

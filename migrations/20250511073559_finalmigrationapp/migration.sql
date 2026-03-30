@@ -1,0 +1,20 @@
+-- AlterEnum
+ALTER TYPE "PhaseType" ADD VALUE 'ThirdPlace';
+
+-- AlterEnum
+-- This migration adds more than one value to an enum.
+-- With PostgreSQL versions 11 and earlier, this is not possible
+-- in a single migration. This can be worked around by creating
+-- multiple migrations, each migration adding only one value to
+-- the enum.
+
+
+ALTER TYPE "PlaceType" ADD VALUE 'ArretBus';
+ALTER TYPE "PlaceType" ADD VALUE 'RestaurationMidi';
+
+-- AlterTable
+ALTER TABLE "Participant" ADD COLUMN     "convocationLink" TEXT;
+
+-- AlterTable
+ALTER TABLE "Sport" ADD COLUMN     "description" TEXT NOT NULL DEFAULT 'Sport description',
+ADD COLUMN     "description2" TEXT NOT NULL DEFAULT 'Sport description 2';

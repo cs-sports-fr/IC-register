@@ -1,0 +1,8 @@
+Signez la charte pour participer au TOSS !
+
+Bonjour ${FIRSTNAME}, dernière étape avant le week-end le plus sportif de l'année !
+Tu peux aller signer la charte en cliquant sur le lien suivant : ${URL}
+Tu auras besoin du mot de passe suivant : ${PASSWORD}
+
+Gros gros bisous,
+L'équipe du toss
