@@ -45,8 +45,8 @@ app = FastAPI(
     docs_url=docs_url,
     redoc_url=redoc_url,
     openapi_url=openapi_url,
-    title="toss-register backend",
-    description="The backend API for TOSS register, a web app for registering users to the TOSS tournament.",
+    title="ic-register backend",
+    description="The backend API for IC register, a web app for registering users to the IC tournament.",
     version="0.0.1",
     contact={
         "name": " Big RIN",

@@ -1,4 +1,4 @@
-Signez la charte pour participer au TOSS !
+Signez la charte pour participer aux IC !
 
 Bonjour ${FIRSTNAME}, dernière étape avant le week-end le plus sportif de l'année !
 Tu peux aller signer la charte en cliquant sur le lien suivant : ${URL}

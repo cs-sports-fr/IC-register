@@ -1,6 +1,6 @@
-Accord d'hebergement TOSS
+Accord d'hebergement IC
 
-Nous sommes l’équipe organisatrice du TOSS et nous te contactons car ${FIRSTNAME} s’est inscrit.e en
+Nous sommes l’équipe organisatrice du IC et nous te contactons car ${FIRSTNAME} s’est inscrit.e en
 choisissant le pack hébergement en résidence et t’as inscrit.e comme étant la personne qui allait
 l'héberger.
 
@@ -12,4 +12,4 @@ Accord d'hebergement : https://cs-sports.fr/toss-register/accord%20hebergement.p
 
 Si tu n'es pas à l'origine de cette demande, merci de contacter l'équipe informatique
 Gros gros bisous,
-L'équipe du toss
+L'équipe des IC
