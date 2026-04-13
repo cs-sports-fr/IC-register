@@ -75,9 +75,9 @@ const Login = () => {
     return (
         <LayoutUnauthenticated isDarkMode={isDarkMode}>
             <Grid container spacing={2} height={'102vh'}>
-                <Grid item md={6} xs={12} sx={{ textAlign: 'center', alignSelf: "center" }}> {/* xs={12} md={6} pour responsive a faire */}
+                <Grid item md={6} xs={12} sx={{textAlign: 'center', alignSelf: "center",backgroundColor: '#FAF7F2'}}> {/* xs={12} md={6} pour responsive a faire */}
                     <Grid py={'10vh'} px={'22%'} sx={{}}>
-                        <Typography variant="h1" sx={{ fontSize: '7rem', fontWeight: 'bold' }}>IC</Typography>
+                        <Typography variant="h1" sx={{ fontSize: '7rem', fontWeight: 'bold', color: '#C1475B' }}>IC</Typography>
                         <DividerText text="Connexion" />
                         <Box m={'1vw'}>
                             <form onSubmit={handleLogin}>
@@ -149,9 +149,7 @@ const Login = () => {
                 </Grid>
                 <Grid item md={6} xs={12}
                     sx={{
-                        backgroundImage: 'url(/images/soiree.jpeg)', // Remplacez chemin/vers/votre/image.jpg par le chemin réel de votre image
-                        backgroundSize: 'cover', // Couvre toute la zone disponible sans perdre les proportions de l'image
-                        backgroundPosition: 'center', // Centre l'image dans la zone disponible
+                        backgroundColor: '#2C4A7C', // Remplacez chemin/vers/votre/image.jpg par le chemin réel de votre image
                         display: 'flex',
                         flexDirection: 'column', // Organise les enfants en colonne
                         justifyContent: 'center', // Centre verticalement

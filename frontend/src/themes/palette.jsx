@@ -24,13 +24,13 @@ const GREY = {
 };
 
 const PRIMARY = {
-    lighter: '#f5dbf1',
-    light: '#e193d5',
-    main: '#CD4CB9',
-    dark: '#a43c94',
-    darker: '#b2d6f',
+    lighter: '#f7d0d6',
+    light: '#d97080',
+    main: '#C1475B',
+    dark: '#8f2a3b',
+    darker: '#5e1225',
     contrastText: '#f3f7f4',
-    contrastTextLight: '#350d2a',
+    contrastTextLight: '#2d0a10',
 };
 
 const SECONDARY = {
@@ -95,8 +95,8 @@ const palette = {
         black: '#101218'
     },
     background: {
-        paper: GREY[900],
-        default: GREY[960],
+        paper: '#FAF7F2',
+        default: '#FAF7F2',
         neutral: GREY[0],
         navbar: GREY[0],// PRIMARY.main
         drawer: GREY[800],
