@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { useEffect, useState } from "react";
 import SchoolList from "../schools/SchoolList";
 import ModifySchool from "../schools/ModifySchool";
@@ -9,7 +9,7 @@ const SchoolConfigCard = () => {
 
     const [schools, setSchools] = useState([]);
     const fetchData = () => {
-        ApiTossConnected.get('/schools').then(response => {
+        ApiICConnected.get('/schools').then(response => {
             setSchools(response.data);
         }
         ).catch(error => {

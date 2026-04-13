@@ -4,7 +4,7 @@ import { routesForAdmin, routesForSuperAdmin } from "../../routes/routes";
 import { useEffect, useState } from "react";
 import TeamList from "../../components/team/TeamList";
 import axios from "axios";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { parseSportAdmin } from "../../utils/parseSport";
 import { useAuth } from "../../provider/authProvider";
@@ -23,7 +23,7 @@ const AdminSportDetail = () => {
         const endpoints = [
             'sports/' + sportId,
         ]
-        axios.all(endpoints.map(url => ApiTossConnected.get(url)))
+        axios.all(endpoints.map(url => ApiICConnected.get(url)))
             .then(axios.spread((...responses) => {
                 setSport(parseSportAdmin(responses[0].data));
                 setFilteredTeams(responses[0].data.teams.filter(team => team.status === 'Validated'));

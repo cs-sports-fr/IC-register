@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Box, Button, Grid, InputLabel, Link, TextField, Typography, CircularProgress } from "@mui/material";
 // eslint-disable-next-line no-unused-vars
 import { validateEmail } from "../service/validation";
-import { ApiTossNotConnected } from "../service/axios";
+import { ApiICNotConnected } from "../service/axios";
 import { useSnackbar } from "../provider/snackbarProvider";
 import DividerText from "../components/DividerText";
 import LayoutUnauthenticated from "../components/layouts/LayoutUnauthenticated";
@@ -48,7 +48,7 @@ const Login = () => {
                 formData.append('username', email);
                 formData.append('password', password);
                 
-                const response = await ApiTossNotConnected.post(
+                const response = await ApiICNotConnected.post(
                     "/login", 
                     formData, 
                     { headers: { 'Content-Type': 'multipart/form-data' } }
@@ -77,7 +77,7 @@ const Login = () => {
             <Grid container spacing={2} height={'102vh'}>
                 <Grid item md={6} xs={12} sx={{ textAlign: 'center', alignSelf: "center" }}> {/* xs={12} md={6} pour responsive a faire */}
                     <Grid py={'10vh'} px={'22%'} sx={{}}>
-                        <Typography variant="h1" sx={{ fontSize: '7rem', fontWeight: 'bold' }}>TOSS</Typography>
+                        <Typography variant="h1" sx={{ fontSize: '7rem', fontWeight: 'bold' }}>IC</Typography>
                         <DividerText text="Connexion" />
                         <Box m={'1vw'}>
                             <form onSubmit={handleLogin}>
@@ -85,7 +85,7 @@ const Login = () => {
                                     <Box sx={{ justifyContent: 'left', textAlign: 'left' }}>
                                         <InputLabel htmlFor="email" sx={{ marginBottom: 1 }}>Email</InputLabel>
                                         <TextField id="email"
-                                            placeholder="toss@cs-sports.fr"
+                                            placeholder="ic@cs-sports.fr"
                                             variant="outlined"
                                             value={email}
                                             onChange={handleChangeEmail}
@@ -143,7 +143,7 @@ const Login = () => {
                                 <Link href="/charte" sx={{ width: '100%', mr: 1 }}><Button fullWidth>Signer la charte</Button></Link>
                                 <Link href="/register" sx={{ width: '100%', ml: 1 }}><Button fullWidth>Inscription</Button></Link>
                             </Box>
-                            <Button href="https://www.cs-sports.fr/toss/" variant="lighter" sx={{ mt: 2, width: '100%' }}>Retour au site</Button>
+                            <Button href="https://www.cs-sports.fr/ic/" variant="lighter" sx={{ mt: 2, width: '100%' }}>Retour au site</Button>
                         </Box>
                     </Grid>
                 </Grid>

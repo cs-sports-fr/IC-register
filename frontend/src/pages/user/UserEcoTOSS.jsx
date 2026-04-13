@@ -11,7 +11,7 @@ import {
     Collapse,
     Button
 } from '@mui/material';
-import { ApiTossConnected } from '../../service/axios';
+import { ApiICConnected } from '../../service/axios';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -31,7 +31,7 @@ const DelegationDistances = () => {
         const fetchDelegationDistances = async () => {
             try {
                 setLoading(true);
-                const response = await ApiTossConnected.get('/schools/delegations/distances');
+                const response = await ApiICConnected.get('/schools/delegations/distances');
                 setSchools(response.data);
                 setError(null);
             } catch (err) {
@@ -60,7 +60,7 @@ const DelegationDistances = () => {
         try {
             setLoadingContact(true);
             // Updated to use school ID instead of name
-            const response = await ApiTossConnected.get(`/schools/contact/${schoolId}`);
+            const response = await ApiICConnected.get(`/schools/contact/${schoolId}`);
             setSchoolContacts(prev => ({
                 ...prev,
                 [schoolId]: response.data

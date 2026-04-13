@@ -2,7 +2,7 @@ import { Box, Button, Divider, InputLabel, Typography } from "@mui/material";
 import * as yup from 'yup';
 import PasswordInput from "../PasswordInput";
 import { useState } from "react";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { useSnackbar } from "../../provider/snackbarProvider";
 
 const PasswordModification = () => {
@@ -41,7 +41,7 @@ const PasswordModification = () => {
                 showSnackbar('Une erreur est survenue', 3000, 'error');
                 return;
             }
-            ApiTossConnected.put('users/' + userId + '/password?old_password=' + passwordData.oldPassword + '&new_password=' + passwordData.newPassword)
+            ApiICConnected.put('users/' + userId + '/password?old_password=' + passwordData.oldPassword + '&new_password=' + passwordData.newPassword)
                 .then(() => {
                     showSnackbar('Mot de passe modifié', 3000, 'success');
                     setPasswordData({

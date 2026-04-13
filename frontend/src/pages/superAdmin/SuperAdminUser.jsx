@@ -2,7 +2,7 @@ import { Box, Pagination, TextField } from "@mui/material";
 import Navbar from "../../components/navbar/Navbar";
 
 import { routesForSuperAdmin } from "../../routes/routes";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { useEffect, useState } from "react";
 import UserList from "../../components/admin/UserList";
 import { parseUsers } from "../../utils/parseUser";
@@ -21,7 +21,7 @@ const SuperAdminUser = () => {
             `users?skip=${(page - 1) * rowsPerPage}&take=${rowsPerPage}&search=${search}`,
             'users/count'
         ]
-        axios.all(endpoints.map(url => ApiTossConnected.get(url)))
+        axios.all(endpoints.map(url => ApiICConnected.get(url)))
             .then(axios.spread((...responses) => {
                 setUsers(parseUsers(responses[0].data));
                 setCount(responses[1].data?.count);

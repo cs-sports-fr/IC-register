@@ -3,7 +3,7 @@ import Navbar from "../../components/navbar/Navbar";
 import { routesForUser } from "../../routes/routes";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import * as yup from 'yup';
 import { useSnackbar } from "../../provider/snackbarProvider";
 import PlayerList from "../../components/team/ParticipantsList";
@@ -53,7 +53,7 @@ const RespoDelegDetailTeam = () => {
             'products',
             'teams/' + teamId,
         ]
-        axios.all(endpoints.map(url => ApiTossConnected.get(url)))
+        axios.all(endpoints.map(url => ApiICConnected.get(url)))
             .then(axios.spread((...responses) => {
                 setPacks(responses[0].data);
                 setGoodies(responses[1].data);
@@ -113,7 +113,7 @@ const RespoDelegDetailTeam = () => {
             await playerSchema.validate(selectedParticipant, { abortEarly: false });
             setErrors({});
             const payload = { ...selectedParticipant, email: selectedParticipant.email ? selectedParticipant.email.toLowerCase() : selectedParticipant.email };
-            ApiTossConnected.put('teams/' + teamId + '/participant/' + selectedParticipant.id, payload)
+            ApiICConnected.put('teams/' + teamId + '/participant/' + selectedParticipant.id, payload)
                 .then(() => {
                     handleCloseDrawer();
                     fetchData();

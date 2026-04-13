@@ -7,7 +7,7 @@ import armevoeux from "../../assets/armevoeux.json"
 import allergies from "../../assets/allergies.json"
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
-import { ApiTossConnected } from '../../service/axios';
+import { ApiICConnected } from '../../service/axios';
 import { useSnackbar } from '../../provider/snackbarProvider';
 import { useEffect, useState } from 'react';
 
@@ -18,7 +18,7 @@ const ModifyParticipant = ({ open, onClose, goodies, packs, participant, errors,
 
     const [dialogOpen, setDialogOpen] = useState(false);
     const handleDelete = () => {
-        ApiTossConnected.delete('teams/' + teamId + '/participants', { data: [participant.id] })
+        ApiICConnected.delete('teams/' + teamId + '/participants', { data: [participant.id] })
             .then(() => {
                 handleClose();
                 showSnackbar('Joueur supprimé', 2000, 'success');
@@ -107,7 +107,7 @@ const ModifyParticipant = ({ open, onClose, goodies, packs, participant, errors,
         formData.append(formFieldName, fileToUpload);
 
         try {
-            await ApiTossConnected.post(`teams/${teamId}/participant/${participant.id}/${routeSegment}`, formData, {
+            await ApiICConnected.post(`teams/${teamId}/participant/${participant.id}/${routeSegment}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

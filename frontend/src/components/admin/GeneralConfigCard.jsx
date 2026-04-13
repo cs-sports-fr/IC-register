@@ -1,5 +1,5 @@
 import { Box, Button, Card, CardContent, CardHeader, InputLabel, Switch, TextField } from "@mui/material";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { useEffect, useState } from "react";
 import { useSnackbar } from "../../provider/snackbarProvider";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
@@ -19,7 +19,7 @@ const GeneralConfigCard = () => {
     });
 
     const fetchData = () => {
-        ApiTossConnected.get('/config').then(response => {
+        ApiICConnected.get('/config').then(response => {
             setConfig(response.data);
         }
         ).catch(error => {
@@ -40,7 +40,7 @@ const GeneralConfigCard = () => {
     }
 
     const handleSave = () => {
-        ApiTossConnected.put('/config', config).then(() => {
+        ApiICConnected.put('/config', config).then(() => {
             showSnackbar('Configuration modifiée', 3000, 'success');
             fetchData();
         }).catch(error => {

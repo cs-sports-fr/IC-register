@@ -16,7 +16,7 @@ import {
 import Navbar from "../../components/navbar/Navbar";
 import { routesForAdmin, routesForSuperAdmin } from "../../routes/routes";
 import { useEffect, useState, useCallback, useRef } from "react";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { useAuth } from "../../provider/authProvider";
 import ParticipantList from "../../components/team/PartcipantList";
 import * as XLSX from 'xlsx';
@@ -178,7 +178,7 @@ const SuperAdminParticipants = () => {
       }
       
       // Make the API call to the endpoint
-      const response = await ApiTossConnected.get(`/teams/participants/details?${params.toString()}`);
+      const response = await ApiICConnected.get(`/teams/participants/details?${params.toString()}`);
       setParticipantsData(response.data);
     } catch (err) {
       console.error("Error fetching participants data:", err);
@@ -193,18 +193,18 @@ const SuperAdminParticipants = () => {
     const fetchFilterData = async () => {
       try {
         // Fetch sports
-        const sportsResponse = await ApiTossConnected.get('/sports');
+        const sportsResponse = await ApiICConnected.get('/sports');
         setSports(sportsResponse.data);
         
         // Fetch schools and sort alphabetically
-        const schoolsResponse = await ApiTossConnected.get('/schools');
+        const schoolsResponse = await ApiICConnected.get('/schools');
         const sortedSchools = schoolsResponse.data.sort((a, b) => 
           a.name.localeCompare(b.name)
         );
         setSchools(sortedSchools);
         
         // Fetch packs
-        const packsResponse = await ApiTossConnected.get('/packs');
+        const packsResponse = await ApiICConnected.get('/packs');
         setPacks(packsResponse.data);
         
         // Team statuses (hardcoded since these are enum values)

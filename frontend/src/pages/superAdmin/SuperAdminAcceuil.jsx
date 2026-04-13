@@ -4,7 +4,7 @@ import {
   import Navbar from "../../components/navbar/Navbar";
   import { routesForAdmin, routesForSuperAdmin } from "../../routes/routes";
   import { useEffect, useState } from "react";
-  import { ApiTossConnected } from "../../service/axios";
+  import { ApiICConnected } from "../../service/axios";
   import { useAuth } from "../../provider/authProvider";
   import DownloadIcon from '@mui/icons-material/Download';
   import RefreshIcon from '@mui/icons-material/Refresh';
@@ -22,7 +22,7 @@ import {
   
     // Fetch sports for dropdown
     useEffect(() => {
-      ApiTossConnected.get('/sports').then(res => setSports(res.data));
+      ApiICConnected.get('/sports').then(res => setSports(res.data));
     }, []);
   
     // Fetch schools/teams/captains/packs/products for a sport
@@ -30,7 +30,7 @@ import {
       if (!selectedSport) return;
       setLoading(true);
       setError(null);
-      ApiTossConnected.get(`/participants/sport/${selectedSport}/schools`)
+      ApiICConnected.get(`/participants/sport/${selectedSport}/schools`)
         .then(res => setSchoolsData(res.data))
         .catch(() => setError("Erreur lors du chargement des données"))
         .finally(() => setLoading(false));

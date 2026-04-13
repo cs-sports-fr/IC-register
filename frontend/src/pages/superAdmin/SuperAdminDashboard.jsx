@@ -3,7 +3,7 @@ import Navbar from "../../components/navbar/Navbar";
 import { routesForAdmin, routesForSuperAdmin } from "../../routes/routes";
 import { useEffect, useState } from "react";
 import TeamList from "../../components/team/TeamList";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../provider/authProvider";
 import HomeIcon from '@mui/icons-material/Home';
@@ -56,7 +56,7 @@ const SuperAdminDashboard = () => {
             url += `?${params.join('&')}`;
         }
         
-        ApiTossConnected.get(url)
+        ApiICConnected.get(url)
         .then((response) => {
             // If we're filtering by Rez or Caution
             if ((isRezFilter || logementRezOk !== null) || (isCautionFilter || cautionOK !== null)) {
@@ -105,7 +105,7 @@ const SuperAdminDashboard = () => {
     };
 
     const fetchSports = () => {
-        ApiTossConnected.get('/sports')
+        ApiICConnected.get('/sports')
             .then((response) => {
                 setSports(response.data);
             })
@@ -162,7 +162,7 @@ const SuperAdminDashboard = () => {
 
     const handleValidateParticipantRez = async (teamId, participantId) => {
         try {
-            await ApiTossConnected.put(`/teams/${teamId}/participant/${participantId}/validate-rez`);
+            await ApiICConnected.put(`/teams/${teamId}/participant/${participantId}/validate-rez`);
             fetchTeams(null, selectedSport, false);
         } catch (error) {
             console.error("Error validating participant rez:", error);
@@ -172,7 +172,7 @@ const SuperAdminDashboard = () => {
 
     const handleValidateCaution = async (teamId, participantId) => {
         try {
-            await ApiTossConnected.put(`/teams/${teamId}/participant/${participantId}/validate-caution`);
+            await ApiICConnected.put(`/teams/${teamId}/participant/${participantId}/validate-caution`);
             fetchTeams(null, selectedSport, null, false);
         } catch (error) {
             console.error("Error validating caution", error);
@@ -183,7 +183,7 @@ const SuperAdminDashboard = () => {
 
     const handleResendCautionEmail = async (teamId, participantId) => {
         try {
-            await ApiTossConnected.post(`/teams/${teamId}/participant/${participantId}/resend-caution-email`);
+            await ApiICConnected.post(`/teams/${teamId}/participant/${participantId}/resend-caution-email`);
             showSnackbar("Email de caution renvoyé avec succès", "success");
         } catch (error) {
             console.error("Error sending email:", error);
@@ -195,7 +195,7 @@ const SuperAdminDashboard = () => {
     const handleUpdateStatus = async (teamId, newStatus) => {
         try {
             setLoading(true);
-            await ApiTossConnected.put('teams/' + teamId + '/status?status=' + newStatus);
+            await ApiICConnected.put('teams/' + teamId + '/status?status=' + newStatus);
             fetchTeams(currentStatus, selectedSport);
         } catch (error) {
             console.error("Error updating team status:", error);
@@ -500,7 +500,7 @@ const PackRatioCell = ({ sportId, align }) => {
 
     useEffect(() => {
         if (sportId) {
-            ApiTossConnected.get(`/sports/${sportId}/pack-ratio`)
+            ApiICConnected.get(`/sports/${sportId}/pack-ratio`)
                 .then(response => {
                     setRatio(response.data.ratio);
                 })

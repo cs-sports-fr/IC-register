@@ -1,12 +1,12 @@
 import axios from "axios";
 
 
-const ApiTossConnected = axios.create({
-    baseURL: import.meta.env.VITE_API_TOSS_URL,
+const ApiICConnected = axios.create({
+    baseURL: import.meta.env.VITE_API_IC_URL,
 });
 
 // Add an interceptor to attach the JWT token to each request
-ApiTossConnected.interceptors.request.use((config) => {
+ApiICConnected.interceptors.request.use((config) => {
     const token = localStorage.getItem("jwtToken");
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -17,7 +17,7 @@ ApiTossConnected.interceptors.request.use((config) => {
 );
 
 // Add a response interceptor for refreshing tokens
-// ApiTossConnected.interceptors.response.use(
+// ApiICConnected.interceptors.response.use(
 //     (response) => response,
 //     async (error) => {
 //         const originalRequest = error.config;
@@ -47,7 +47,7 @@ ApiTossConnected.interceptors.request.use((config) => {
 // );
 
 // Deconnexion si erreur 401 (token expiré)
-ApiTossConnected.interceptors.response.use(
+ApiICConnected.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response.status === 401) {
@@ -58,8 +58,8 @@ ApiTossConnected.interceptors.response.use(
     }
 );
 
-const ApiTossNotConnected = axios.create({
-    baseURL: import.meta.env.VITE_API_TOSS_URL,
+const ApiICNotConnected = axios.create({
+    baseURL: import.meta.env.VITE_API_IC_URL,
 });
 
-export { ApiTossConnected, ApiTossNotConnected }
+export { ApiICConnected, ApiICNotConnected }

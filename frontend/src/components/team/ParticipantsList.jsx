@@ -2,7 +2,7 @@ import { Cancel, CheckCircle, Edit, MailOutline, Visibility } from '@mui/icons-m
 import { Box, Card, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useSnackbar } from "../../provider/snackbarProvider";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import HomeIcon from '@mui/icons-material/Home';
 import DoneIcon from '@mui/icons-material/Done';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -22,7 +22,7 @@ const ParticipantsList = ({ headerItem, columns, players, modify, onModify, team
             // Construct the URL for the resend charter email endpoint
             const url = `/teams/${teamId}/participant/${participantId}/resend-charte-email`;
 
-            await ApiTossConnected.post(url, {}, { headers: { 'Content-Type': 'application/json' } });
+            await ApiICConnected.post(url, {}, { headers: { 'Content-Type': 'application/json' } });
 
             // Show success feedback to the user
             showSnackbar('Email de charte renvoyé avec succès', 3000, 'success');
@@ -46,7 +46,7 @@ const ParticipantsList = ({ headerItem, columns, players, modify, onModify, team
             // Construct the URL for the resend charter email endpoint
             const url = `/teams/${teamId}/participant/${participantId}/resend-caution-email`;
 
-            await ApiTossConnected.post(url, {}, { headers: { 'Content-Type': 'application/json' } });
+            await ApiICConnected.post(url, {}, { headers: { 'Content-Type': 'application/json' } });
 
             // Show success feedback to the user
             showSnackbar('Email de caution renvoyé avec succès', 3000, 'success');
@@ -67,7 +67,7 @@ const ParticipantsList = ({ headerItem, columns, players, modify, onModify, team
     const handleValidateRez = async (teamId, participantId) => {
         try {
             const url = `/teams/${teamId}/participant/${participantId}/validate-rez`;
-            await ApiTossConnected.put(url);
+            await ApiICConnected.put(url);
             
             showSnackbar('Logement validé avec succès', 3000, 'success');
         } catch (error) {
@@ -86,7 +86,7 @@ const ParticipantsList = ({ headerItem, columns, players, modify, onModify, team
     const handleValidateCaution = async (teamId, participantId) => {
         try {
             const url = `/teams/${teamId}/participant/${participantId}/validate-caution`;
-            await ApiTossConnected.put(url);
+            await ApiICConnected.put(url);
             
             showSnackbar('Caution validé avec succès', 3000, 'success');
         } catch (error) {
@@ -106,7 +106,7 @@ const ParticipantsList = ({ headerItem, columns, players, modify, onModify, team
     const handleValidateCertificate = async (teamId, participantId) => {
         try {
             const url = `/teams/${teamId}/participant/${participantId}/validate-certificate`;
-            await ApiTossConnected.put(url);
+            await ApiICConnected.put(url);
                 
             showSnackbar('Certificat validé/dévalidé avec succès', 3000, 'success');
           
@@ -127,7 +127,7 @@ const ParticipantsList = ({ headerItem, columns, players, modify, onModify, team
     const handleValidateLicence = async (teamId, participantId) => {
         try {
             const url = `/teams/${teamId}/participant/${participantId}/validate-licence`;
-            await ApiTossConnected.put(url);
+            await ApiICConnected.put(url);
             showSnackbar('Licence validée/dévalidée avec succès', 3000, 'success');
         } catch (error) {
             console.error("Erreur lors de la validation de la licence", error);
@@ -166,7 +166,7 @@ const ParticipantsList = ({ headerItem, columns, players, modify, onModify, team
             const url = `/teams/${teamId}/participants`;
             
             // Send the participant IDs directly as a list in the request body
-            await ApiTossConnected.delete(url, { 
+            await ApiICConnected.delete(url, { 
                 data: [participantId]  // Send as a direct array, not inside an object
             });
             
@@ -192,7 +192,7 @@ const ParticipantsList = ({ headerItem, columns, players, modify, onModify, team
 
     const handleDocument = async (teamId, participantId, routeSegment, label) => {
         try {
-            const response = await ApiTossConnected.get(`/teams/${teamId}/participant/${participantId}/${routeSegment}`, { responseType: 'blob' });
+            const response = await ApiICConnected.get(`/teams/${teamId}/participant/${participantId}/${routeSegment}`, { responseType: 'blob' });
 
             if (response.status === 200) {
                 const blob = response.data;

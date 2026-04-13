@@ -1,7 +1,7 @@
 import { Autocomplete, Box, Button, Divider, Drawer, ListItem, ListItemText, TextField, Typography } from "@mui/material";
 import PropTypes from 'prop-types';
 import { useEffect, useState } from "react";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { useSnackbar } from "../../provider/snackbarProvider";
 
 const ModifyUserStatus = ({ open, onClose, user }) => {
@@ -10,7 +10,7 @@ const ModifyUserStatus = ({ open, onClose, user }) => {
 
     const [sports, setSports] = useState([]);
     const fetchSports = () => {
-        ApiTossConnected.get('sports')
+        ApiICConnected.get('sports')
             .then((response) => {
                 setSports(response.data);
             }).catch((error) => {
@@ -30,7 +30,7 @@ const ModifyUserStatus = ({ open, onClose, user }) => {
 
     const handleChangeStatus = (status, sportId) => {
         if (status === 'UserStatus' || status === 'SuperAdminStatus' || status === 'RespoDelegStatus') {
-            ApiTossConnected.put(`users/${user.id}/status?new_status=${status}`)
+            ApiICConnected.put(`users/${user.id}/status?new_status=${status}`)
                 .then(() => {
                     showSnackbar('Modification effectuée avec succès', 3000, 'success',);
                 }
@@ -41,7 +41,7 @@ const ModifyUserStatus = ({ open, onClose, user }) => {
 
         } else if (status === 'AdminStatus') {
             console.log(sportId);
-            ApiTossConnected.put(`users/${user.id}/status?new_status=${status}&sportId=${sportId}`)
+            ApiICConnected.put(`users/${user.id}/status?new_status=${status}&sportId=${sportId}`)
                 .then(() => {
                     showSnackbar('Modification effectuée avec succès', 3000, 'success',);
                 }

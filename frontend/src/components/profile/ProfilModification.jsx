@@ -1,6 +1,6 @@
 import { Box, Button, Divider, InputLabel, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import * as Yup from 'yup';
 import { useSnackbar } from "../../provider/snackbarProvider";
 
@@ -26,7 +26,7 @@ const ProfilModification = () => {
 
 
     const fetchData = () => {
-        ApiTossConnected.get('/users/me')
+        ApiICConnected.get('/users/me')
             .then(response => {
                 setUser(response.data);
             }).catch(error => {
@@ -52,7 +52,7 @@ const ProfilModification = () => {
                     return;
                 }
                 const dataString = `?email=${user.email}&firstname=${user.firstname}&lastname=${user.lastname}&mobile=${user.mobile}`;
-                ApiTossConnected.put('users/' + userId + dataString)
+                ApiICConnected.put('users/' + userId + dataString)
                     .then(() => {
                         showSnackbar('Modifications effectuées', 3000, 'success');
                         fetchData();

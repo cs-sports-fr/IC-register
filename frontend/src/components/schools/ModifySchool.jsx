@@ -1,7 +1,7 @@
 import { Box, Button, Drawer, InputLabel, Switch, TextField, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { ApiTossConnected } from '../../service/axios';
+import { ApiICConnected } from '../../service/axios';
 import { useSnackbar } from '../../provider/snackbarProvider';
 
 
@@ -24,7 +24,7 @@ const ModifySchool = ({ open, onClose, schoolInput }) => {
 
     const handleValidate = () => {
         // Make sure we're sending all required parameters
-        ApiTossConnected.put(`/schools/${school.id}`, null, {
+        ApiICConnected.put(`/schools/${school.id}`, null, {
             params: {
                 name: school.name,
                 is_in_idf: school.isInIDF || false, 

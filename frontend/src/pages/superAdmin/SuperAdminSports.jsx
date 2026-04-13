@@ -8,7 +8,7 @@ import {
   import Navbar from "../../components/navbar/Navbar";
   import { routesForAdmin, routesForSuperAdmin } from "../../routes/routes";
   import { useEffect, useState } from "react";
-  import { ApiTossConnected } from "../../service/axios";
+  import { ApiICConnected } from "../../service/axios";
   import { useAuth } from "../../provider/authProvider";
   import ParticipantList from "../../components/team/PartcipantList";
   import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
@@ -97,7 +97,7 @@ import {
       try {
        
         
-        const response = await ApiTossConnected.get(`/sports/team-status-count/all`);
+        const response = await ApiICConnected.get(`/sports/team-status-count/all`);
         setSportsData(response.data);
       } catch (err) {
         console.error("Error fetching sports data:", err);

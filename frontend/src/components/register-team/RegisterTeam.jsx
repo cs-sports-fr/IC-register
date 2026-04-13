@@ -8,7 +8,7 @@ import gender from "../../assets/gender.json";
 import classementTennis from "../../assets/classementTennis.json";
 import armevoeux from "../../assets/armevoeux.json";
 import allergies from "../../assets/allergies.json";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import axios from "axios";
 import * as yup from 'yup';
 import { useSnackbar } from "../../provider/snackbarProvider";
@@ -207,7 +207,7 @@ const RegisterTeam = ({ sport }) => {
         if (isSwimming) {
             endpoints.push(`/swimming/events/${sport.id}`);
         }
-        axios.all(endpoints.map(url => ApiTossConnected.get(url)))
+        axios.all(endpoints.map(url => ApiICConnected.get(url)))
             .then(axios.spread((...responses) => {
                 setPacks(responses[0].data);
                 setGoodies(responses[1].data);
@@ -380,7 +380,7 @@ const RegisterTeam = ({ sport }) => {
                     : playerData
             );
 
-            ApiTossConnected.post(`/teams/?name=${teamName}&sportId=${sport.id}&level=${teamLevel}`, participantsPayload, { headers: { 'Content-Type': 'application/json' } })
+            ApiICConnected.post(`/teams/?name=${teamName}&sportId=${sport.id}&level=${teamLevel}`, participantsPayload, { headers: { 'Content-Type': 'application/json' } })
                 .then(() => {
                     showSnackbar('Inscription réussie', 3000, 'success',);
                     navigation('/');

@@ -4,7 +4,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import axios from "axios";
 import PropTypes from 'prop-types';
 import { useEffect, useState } from "react";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { parseTeamDashboard } from "../../utils/parseTeam";
 
 function GoodiesCardUser({ minHeight }) {
@@ -16,7 +16,7 @@ function GoodiesCardUser({ minHeight }) {
         const endpoints = [
             'teams',
         ]
-        axios.all(endpoints.map(url => ApiTossConnected.get(url)))
+        axios.all(endpoints.map(url => ApiICConnected.get(url)))
             .then(axios.spread((...responses) => {
                 setTeams(parseTeamDashboard(responses[0].data));
                 setLoading(false);

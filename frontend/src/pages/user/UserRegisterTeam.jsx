@@ -5,7 +5,7 @@ import SelectSport from "../../components/register-team/SelectSport";
 import { routesForUser } from "../../routes/routes";
 import { useEffect, useState } from "react";
 import RegisterTeam from "../../components/register-team/RegisterTeam";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import axios from "axios";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -132,7 +132,7 @@ const UserRegisterTeam = () => {
 
     const fetchData = () => {
         const endpoints = ['/sports'];
-        axios.all(endpoints.map(url => ApiTossConnected.get(url)))
+        axios.all(endpoints.map(url => ApiICConnected.get(url)))
             .then(axios.spread((...responses) => {
                 setSports(responses[0].data);
             })).catch((error) => {
@@ -141,7 +141,7 @@ const UserRegisterTeam = () => {
     };
 
     const fetchConfig = () => {
-        ApiTossConnected.get('/config')
+        ApiICConnected.get('/config')
             .then((response) => {
                 setConfig(response?.data);
             }).catch((error) => {

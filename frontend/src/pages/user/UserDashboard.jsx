@@ -4,7 +4,7 @@ import ToPayCard from "../../components/dashboard/ToPayCard";
 import Navbar from "../../components/navbar/Navbar";
 import { routesForUser } from "../../routes/routes";
 import { Grid, Box } from "@mui/material";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import axios from "axios";
 import { parseTeamDashboard } from "../../utils/parseTeam";
 import { calculatePrice } from "../../utils/calculatePrice";
@@ -19,7 +19,7 @@ function UserDashboard() {
         const endpoints = [
             'teams',
         ]
-        axios.all(endpoints.map(url => ApiTossConnected.get(url)))
+        axios.all(endpoints.map(url => ApiICConnected.get(url)))
             .then(axios.spread((...responses) => {
                 setTeams(parseTeamDashboard(responses[0].data));
                 setPaymentData(calculatePrice(responses[0].data));

@@ -5,7 +5,7 @@ import { useSnackbar } from "../provider/snackbarProvider";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as yup from 'yup';
-import { ApiTossNotConnected } from "../service/axios";
+import { ApiICNotConnected } from "../service/axios";
 import axios from "axios";
 
 const Register = () => {
@@ -80,7 +80,7 @@ const Register = () => {
             };
             
             // Send form data
-            ApiTossNotConnected.post('/signup/', userData, { headers: { 'Content-Type': 'application/json' } }).then(() => {
+            ApiICNotConnected.post('/signup/', userData, { headers: { 'Content-Type': 'application/json' } }).then(() => {
                 showSnackbar('Inscription réussie, veuillez vous connecter', 3000, 'success',);
                 navigate('/');
             }).catch((error) => {
@@ -109,7 +109,7 @@ const Register = () => {
         const endpoints = [
             'schools',
         ]
-        axios.all(endpoints.map(url => ApiTossNotConnected.get(url)))
+        axios.all(endpoints.map(url => ApiICNotConnected.get(url)))
             .then(axios.spread((...responses) => {
                 // Sort schools alphabetically by name before setting state
                 const sortedSchools = [...responses[0].data].sort((a, b) => 
@@ -137,7 +137,7 @@ const Register = () => {
                                 mb: 1.5,
                                 letterSpacing: '0.001rem',
                             }}>
-                                <span style={{ textDecoration: 'underline', textDecorationColor: '#DBA802', textUnderlineOffset: '0.7rem', textDecorationThickness: '4px', }}>Inscr</span>iption au <span style={{ color: "#DBA802" }}>TOSS 2026</span>
+                                <span style={{ textDecoration: 'underline', textDecorationColor: '#DBA802', textUnderlineOffset: '0.7rem', textDecorationThickness: '4px', }}>Inscr</span>iption au <span style={{ color: "#DBA802" }}>IC 2026</span>
                             </Typography>
 
                             <form >

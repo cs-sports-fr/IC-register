@@ -5,7 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { routesForUser } from "../../routes/routes";
 import { useEffect, useState } from "react";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { calculatePrice } from "../../utils/calculatePrice";
 import TeamPaymentList from "../../components/team/TeamsPaymentList";
 import { parseTeamDashboard } from "../../utils/parseTeam";
@@ -46,7 +46,7 @@ const UserPayment = () => {
         if (window.confirm(`Vous allez être redirigé vers Lydia pour payer ${amountLeft.toFixed(2)} € pour l'équipe "${team.name}".\n\nContinuer ?`)) {
             showSnackbar('Création du paiement en cours...', 2000, 'info');
             
-            ApiTossConnected.post('/payment/request?team_id=' + team.id)
+            ApiICConnected.post('/payment/request?team_id=' + team.id)
                 .then((response) => {
                     if (response.data) {
                         showSnackbar('Redirection vers Lydia...', 2000, 'success');
@@ -106,7 +106,7 @@ const UserPayment = () => {
     }
 
     const fetchConfig = () => {
-        ApiTossConnected.get('/config')
+        ApiICConnected.get('/config')
             .then((response) => {
                 setConfig(response?.data);
             }).catch((error) => {
@@ -115,7 +115,7 @@ const UserPayment = () => {
     }
 
     const fetchTeams = () => {
-        ApiTossConnected.get('/teams')
+        ApiICConnected.get('/teams')
             .then((response) => {
                 setTeams(parseTeamDashboard(response?.data));
                 setPaymentData(calculatePrice(response?.data));
@@ -126,7 +126,7 @@ const UserPayment = () => {
     }
 
     const fetchUserData = () => {
-        ApiTossConnected.get('/users/me')
+        ApiICConnected.get('/users/me')
             .then((response) => {
                 setUser(response.data); // Assuming the user data is directly in the response data
             })

@@ -4,7 +4,7 @@ import { useSnackbar } from "../provider/snackbarProvider";
 import { Box, Button, Divider, Grid, InputLabel, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import * as yup from 'yup';
-import { ApiTossNotConnected } from "../service/axios";
+import { ApiICNotConnected } from "../service/axios";
 
 const ForgotPassword = () => {
 
@@ -33,7 +33,7 @@ const ForgotPassword = () => {
             setEmailError(""); // Réinitialiser les erreurs
 
             // Envoyer les données du formulaire
-            ApiTossNotConnected.post("/password-reset-request?email=" + email).then(() => {
+            ApiICNotConnected.post("/password-reset-request?email=" + email).then(() => {
                 showSnackbar("Un email de réinitialisation de mot de passe a été envoyé.", 3000, "success")
                 navigate("/");
             }).catch(() => {

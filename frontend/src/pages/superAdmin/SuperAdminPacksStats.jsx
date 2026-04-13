@@ -23,7 +23,7 @@ import {
 import Navbar from "../../components/navbar/Navbar";
 import { routesForAdmin, routesForSuperAdmin } from "../../routes/routes";
 import { useEffect, useState } from "react";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import { useAuth } from "../../provider/authProvider";
 
 // Import chart components from MUI X
@@ -88,18 +88,18 @@ const SuperAdminPacksStats = () => {
     const fetchFilterData = async () => {
       try {
         // Fetch sports
-        const sportsResponse = await ApiTossConnected.get('/sports');
+        const sportsResponse = await ApiICConnected.get('/sports');
         setSports(sportsResponse.data);
         
         // Fetch schools and sort alphabetically
-        const schoolsResponse = await ApiTossConnected.get('/schools');
+        const schoolsResponse = await ApiICConnected.get('/schools');
         const sortedSchools = schoolsResponse.data.sort((a, b) => 
           a.name.localeCompare(b.name)
         );
         setSchools(sortedSchools);
         
         // Fetch packs
-        const packsResponse = await ApiTossConnected.get('/packs');
+        const packsResponse = await ApiICConnected.get('/packs');
         setPacks(packsResponse.data);
         
         // Team statuses (hardcoded since these are enum values)
@@ -157,7 +157,7 @@ const SuperAdminPacksStats = () => {
       params.append('include_captain', includeCaptain);
       
       // Make the API call
-      const response = await ApiTossConnected.get(`/teams/packs/statistics?${params.toString()}`);
+      const response = await ApiICConnected.get(`/teams/packs/statistics?${params.toString()}`);
       setStatsData(response.data);
     } catch (err) {
       console.error("Error fetching stats data:", err);

@@ -1,7 +1,7 @@
 import { Box, Button, Drawer, InputLabel, Switch, TextField, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { ApiTossConnected } from '../../service/axios';
+import { ApiICConnected } from '../../service/axios';
 import { useSnackbar } from '../../provider/snackbarProvider';
 
 
@@ -27,7 +27,7 @@ const AddSchool = ({ open, onClose }) => {
             showSnackbar('Le nom de l\'école est vide', 3000, 'error');
             return;
         }
-        ApiTossConnected.post('/schools/?name=' + school.name + '&is_in_idf=' + school.isIdf).then(() => {
+        ApiICConnected.post('/schools/?name=' + school.name + '&is_in_idf=' + school.isIdf).then(() => {
             showSnackbar('Ecole ajoutée', 3000, 'success');
             setSchool({
                 name: '',

@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import * as yup from 'yup';
 import { useSnackbar } from '../../provider/snackbarProvider';
-import { ApiTossConnected } from '../../service/axios';
+import { ApiICConnected } from '../../service/axios';
 
 const AddParticipant = ({ open, onClose, goodies, packs, teamId }) => {
 
@@ -69,7 +69,7 @@ const AddParticipant = ({ open, onClose, goodies, packs, teamId }) => {
         try {
             await playerSchema.validate(participant, { abortEarly: false });
             setErrors({});
-            ApiTossConnected.post('teams/' + teamId + '/participants', [participant])
+            ApiICConnected.post('teams/' + teamId + '/participants', [participant])
                 .then(() => {
                     onClose();
                     setParticipant(initState);

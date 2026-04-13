@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import Navbar from "../../components/navbar/Navbar";
 import { routesForAdmin, routesForSuperAdmin } from "../../routes/routes";
 import { useEffect, useState } from "react";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import SelectSportAdmin from "../../components/admin/SelectSportAdmin";
@@ -18,7 +18,7 @@ const AdminSports = () => {
         const endpoints = [
             '/sports',
         ]
-        axios.all(endpoints.map(url => ApiTossConnected.get(url)))
+        axios.all(endpoints.map(url => ApiICConnected.get(url)))
             .then(axios.spread((...responses) => {
                 setSports(responses[0].data);
 

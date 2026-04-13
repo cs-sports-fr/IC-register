@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSnackbar } from "../provider/snackbarProvider";
 import { useNavigate } from "react-router-dom";
 import { validateEmail } from "../service/validation";
-import { ApiTossNotConnected } from "../service/axios";
+import { ApiICNotConnected } from "../service/axios";
 import LayoutUnauthenticated from "../components/layouts/LayoutUnauthenticated";
 
 
@@ -64,7 +64,7 @@ function Chartes() {
 
         if (hasError) return;
 
-        ApiTossNotConnected.post('/teams/participant/sign-charte?email=' + email.toLowerCase() + '&charte_password=' + password)
+        ApiICNotConnected.post('/teams/participant/sign-charte?email=' + email.toLowerCase() + '&charte_password=' + password)
             .then(() => {
                 showSnackbar("Charte signée avec succès !", 3000, "success");
                 navigate("/");

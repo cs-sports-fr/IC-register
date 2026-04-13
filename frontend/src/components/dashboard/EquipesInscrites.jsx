@@ -4,7 +4,7 @@ import TeamList from "../team/TeamList";
 import { useNavigate } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from "react";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 
 function EquipesInscritesPage({ height, teams }) {
 
@@ -13,7 +13,7 @@ function EquipesInscritesPage({ height, teams }) {
     
     useEffect(() => {
         // Récupérer les informations de disponibilité pour chaque sport
-        ApiTossConnected.get('/sports/availability-info')
+        ApiICConnected.get('/sports/availability-info')
             .then(response => {
                 const availabilityMap = {};
                 response.data.forEach(sport => {

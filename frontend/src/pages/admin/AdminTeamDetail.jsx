@@ -3,7 +3,7 @@ import Navbar from "../../components/navbar/Navbar";
 import { routesForAdmin, routesForSuperAdmin } from "../../routes/routes";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ApiTossConnected } from "../../service/axios";
+import { ApiICConnected } from "../../service/axios";
 import * as yup from 'yup';
 import { useSnackbar } from "../../provider/snackbarProvider";
 import PlayerList from "../../components/team/ParticipantsList";
@@ -67,7 +67,7 @@ const AdminTeamDetail = () => {
             'products',
             'teams/' + teamId,
         ]
-        axios.all(endpoints.map(url => ApiTossConnected.get(url)))
+        axios.all(endpoints.map(url => ApiICConnected.get(url)))
             .then(axios.spread((...responses) => {
                 setPacks(responses[0].data);
                 setGoodies(responses[1].data);
@@ -113,7 +113,7 @@ const AdminTeamDetail = () => {
         try {
             await playerSchema.validate(selectedParticipant, { abortEarly: false });
             setErrors({});
-            ApiTossConnected.put('teams/' + teamId + '/participant/' + selectedParticipant.id, selectedParticipant)
+            ApiICConnected.put('teams/' + teamId + '/participant/' + selectedParticipant.id, selectedParticipant)
                 .then(() => {
                     handleCloseDrawer();
                     fetchData();
@@ -141,7 +141,7 @@ const AdminTeamDetail = () => {
     const confirmStatusUpdate = () => {
         if (!statusToUpdate) return;
         
-        ApiTossConnected.put('teams/' + teamId + '/status?status=' + statusToUpdate)
+        ApiICConnected.put('teams/' + teamId + '/status?status=' + statusToUpdate)
             .then(() => {
                 fetchData();
                 showSnackbar('Status modifié', 2000, 'success');
@@ -161,7 +161,7 @@ const AdminTeamDetail = () => {
     
     // Add confirm delete handler
     const confirmDeleteTeam = () => {
-        ApiTossConnected.delete(`/teams/${teamId}/admin`)
+        ApiICConnected.delete(`/teams/${teamId}/admin`)
             .then(() => {
                 showSnackbar('Équipe supprimée avec succès', 3000, 'success');
                 setDeleteDialogOpen(false);
@@ -241,7 +241,7 @@ const AdminTeamDetail = () => {
             }
             
             // Use the correct endpoint and pass name as a query parameter
-            ApiTossConnected.put(`teams/${teamId}?name=${encodeURIComponent(editTeamName)}`)
+            ApiICConnected.put(`teams/${teamId}?name=${encodeURIComponent(editTeamName)}`)
                 .then(() => {
                     fetchData();
                     showSnackbar('Nom de l\'équipe modifié avec succès', 2000, 'success');
