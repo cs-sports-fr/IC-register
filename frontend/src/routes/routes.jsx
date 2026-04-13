@@ -15,7 +15,7 @@ import Profile from "../pages/common/Profile";
 import AdminTeamDetail from "../pages/admin/AdminTeamDetail";
 import SuperAdminParameters from "../pages/superAdmin/SuperAdminParameters";
 import SuperAdminUser from "../pages/superAdmin/SuperAdminUser";
-import UserEcoTOSS from "../pages/user/UserEcoTOSS";
+import UserEcoIC from "../pages/user/UserEcoIC";
 import UserPack from "../pages/user/UserPack";
 import SuperAdminStats from "../pages/superAdmin/SuperAdminPacksStats";
 import SuperAdminParticipants from "../pages/superAdmin/SuperAdminParticipant";
@@ -43,7 +43,7 @@ const routesForUser = [
     },
     {
         path: "/ecotoss",
-        element: <UserEcoTOSS />,
+        element: <UserEcoIC />,
         name: 'Covoiturage',
     },
     {
@@ -126,7 +126,7 @@ const routesForRespoDeleg = [
     },
     {
         path: "/ecotoss",
-        element: <UserEcoTOSS />,
+        element: <UserEcoIC />,
         name: 'Covoiturage',
     },
 ]

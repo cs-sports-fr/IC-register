@@ -49,7 +49,7 @@ app = FastAPI(
     description="The backend API for IC register, a web app for registering users to the IC tournament.",
     version="0.0.1",
     contact={
-        "name": " Big RIN",
+        "name": "IC Team",
         "email": "info@cs-sports.fr",
     },
 )
