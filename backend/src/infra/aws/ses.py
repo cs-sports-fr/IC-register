@@ -8,7 +8,7 @@ AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
 AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
 AWS_REGION = "eu-west-3"
 CHARSET = "UTF-8"
-SENDER = "TOSS 2026 - Inscriptions <inscriptions@toss-register.bds-cs.fr>"
+SENDER = "IC 2026 - Inscriptions <inscriptions@toss-register.bds-cs.fr>"
 
 
 class EmailClient:

@@ -36,7 +36,7 @@ function UserPack() {
                 alignItems: 'center',
             }}>
                 <Typography sx={{ color: 'white', fontWeight: 'bold', fontSize: '2rem', textAlign: 'center', mt: 5 }}>
-                Tarifs TOSS 2026
+                Tarifs IC 2026
                 </Typography>
                 <ToggleButtonGroup
                     value={selected}

@@ -315,7 +315,7 @@ async def send_charte_email(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject="[TOSS 2026] Charte participant",
+                    subject="[IC 2026] Charte participant",
                     body_html=html_content,
                     body_text=txt_content,
                 )
@@ -330,7 +330,7 @@ async def send_charte_email(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject="[TOSS 2026] Charte participant",
+                    subject="[IC 2026] Charte participant",
                     text=txt_content,
                     html=html_content,
                 )
@@ -363,7 +363,7 @@ async def send_mail_inscription_participant_email(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject="[TOSS 2026] Inscription TOSS",
+                    subject="[IC 2026] Inscription TOSS",
                     body_html=html_content,
                     body_text=txt_content,
 
@@ -375,7 +375,7 @@ async def send_mail_inscription_participant_email(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject="[TOSS 2026] Inscription TOSS",
+                    subject="[IC 2026] Inscription TOSS",
                     html=html_content,
                 )
             except Exception:
@@ -401,7 +401,7 @@ async def send_host_rez_email(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject="[TOSS 2026] Accord d'hebergement",
+                    subject="[IC 2026] Accord d'hebergement",
                     body_html=html_content,
                     body_text=txt_content,
                 )
@@ -412,7 +412,7 @@ async def send_host_rez_email(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject="[TOSS 2026] Accord d'hebergement",
+                    subject="[IC 2026] Accord d'hebergement",
                     text=txt_content,
                     html=html_content,
                 )
@@ -438,7 +438,7 @@ async def send_participant_rez_email(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject="[TOSS 2026] Inscription logement en résidence",
+                    subject="[IC 2026] Inscription logement en résidence",
                     body_html=html_content,
                     body_text=txt_content,
                 )
@@ -449,7 +449,7 @@ async def send_participant_rez_email(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject="[TOSS 2026] Inscription logement en résidence",
+                    subject="[IC 2026] Inscription logement en résidence",
                     text=txt_content,
                     html=html_content,
                 )
@@ -477,7 +477,7 @@ async def send_mail_inscription_equipe(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject="[TOSS 2026] Inscription Equipe",
+                    subject="[IC 2026] Inscription Equipe",
                     body_html=html_content,
                     body_text=txt_content,
 
@@ -490,7 +490,7 @@ async def send_mail_inscription_equipe(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject="[TOSS 2026] Passage en liste d'attente",
+                    subject="[IC 2026] Passage en liste d'attente",
                     html=html_content,
                 )
             except Exception:
@@ -515,7 +515,7 @@ async def send_mail_passage_liste_attente(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject="[TOSS 2026] Passage en liste d'attente",
+                    subject="[IC 2026] Passage en liste d'attente",
                     body_html=html_content,
                     body_text=txt_content,
 
@@ -528,7 +528,7 @@ async def send_mail_passage_liste_attente(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject="[TOSS 2026] Passage en liste d'attente",
+                    subject="[IC 2026] Passage en liste d'attente",
                     html=html_content,
                 )
             except Exception:
@@ -554,7 +554,7 @@ async def send_mail_selectionne(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject="[TOSS 2026] Equipe Selectionnée",
+                    subject="[IC 2026] Equipe Selectionnée",
                     body_html=html_content,
                     body_text=txt_content,
 
@@ -567,7 +567,7 @@ async def send_mail_selectionne(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject="[TOSS 2026] Equipe Selectionnée",
+                    subject="[IC 2026] Equipe Selectionnée",
                     html=html_content,
                 )
             except Exception:
@@ -594,7 +594,7 @@ async def send_mail_inscription_finalisee(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject="[TOSS 2026] Insciption Equipe Finalisée",
+                    subject="[IC 2026] Insciption Equipe Finalisée",
                     body_html=html_content,
                     body_text=txt_content,
 
@@ -607,7 +607,7 @@ async def send_mail_inscription_finalisee(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject="[TOSS 2026] Insciption Equipe Finalisée",
+                    subject="[IC 2026] Insciption Equipe Finalisée",
                     html=html_content,
                 )
             except Exception:
@@ -641,7 +641,7 @@ async def send_participant_selected_email(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject=f"[TOSS 2026] Votre équipe {team_name} est sélectionnée pour le {sport_name}",
+                    subject=f"[IC 2026] Votre équipe {team_name} est sélectionnée pour le {sport_name}",
                     body_html=html_content,
                     body_text=txt_content,
                 )
@@ -652,7 +652,7 @@ async def send_participant_selected_email(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject=f"[TOSS 2026] Votre équipe {team_name} est sélectionnée pour le {sport_name}",
+                    subject=f"[IC 2026] Votre équipe {team_name} est sélectionnée pour le {sport_name}",
                     html=html_content,
                     text=txt_content
                 )
@@ -691,7 +691,7 @@ async def send_participant_com_email(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject=f"[TOSS 2026] Le TOSS c'est bientot !",
+                    subject=f"[IC 2026] Le TOSS c'est bientot !",
                     body_html=html_content,
                     body_text=txt_content,
                 )
@@ -702,7 +702,7 @@ async def send_participant_com_email(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject=f"[TOSS 2026] Le TOSS c'est bientot !",
+                    subject=f"[IC 2026] Le TOSS c'est bientot !",
                     html=html_content,
                     text=txt_content
                 )
@@ -734,7 +734,7 @@ async def send_participant_com_email2(
             try:
                 email_client.send_email(
                     to_address=email,
-                    subject=f"[TOSS 2026] Questionnaire de satisfaction",
+                    subject=f"[IC 2026] Questionnaire de satisfaction",
                     body_html=html_content,
                     body_text=txt_content,
                 )
@@ -745,7 +745,7 @@ async def send_participant_com_email2(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject=f"[TOSS 2026]  Questionnaire de satisfaction",
+                    subject=f"[IC 2026]  Questionnaire de satisfaction",
                     html=html_content,
                     text=txt_content
                 )

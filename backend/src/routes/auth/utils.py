@@ -167,7 +167,7 @@ async def send_reset_password_email(
             if general_config.mailClient == mailClient.SES:
                 email_client.send_email(
                     to_address=email,
-                    subject="[TOSS 2026] Réinitialisez votre mot de passe",
+                    subject="[IC 2026] Réinitialisez votre mot de passe",
                     body_html=html_content,
                     body_text=txt_content,
                 )
@@ -175,7 +175,7 @@ async def send_reset_password_email(
                 mailgun_client.send_email(
                     from_email="toss-register@cs-sports.fr",
                     to_email=email,
-                    subject="[TOSS 2026] Réinitialisez votre mot de passe",
+                    subject="[IC 2026] Réinitialisez votre mot de passe",
                     text=txt_content,
                     html=html_content,
                 )

@@ -83,7 +83,7 @@ function Chartes() {
     };
 
     const handleReadCharte = () => {
-        window.open('./Charte/[TOSS 2026] Charte_participant.pdf', '_blank');
+        window.open('./Charte/[IC 2026] Charte_participant.pdf', '_blank');
     }
     const handleReadCGI = () => {
         window.open('./CGI/CGI_indiv.pdf', '_blank');
