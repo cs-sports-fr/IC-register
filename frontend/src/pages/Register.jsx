@@ -315,16 +315,14 @@ const Register = () => {
                         </Grid>
                     </Grid>
                     <Grid item xs={12} md={5}
-                        sx={{
-                            backgroundImage: 'url(/images/register.jpeg)', // Remplacez chemin/vers/votre/image.jpg par le chemin réel de votre image
-                            backgroundSize: 'cover', // Couvre toute la zone disponible sans perdre les proportions de l'image
-                            backgroundPosition: 'center', // Centre l'image dans la zone disponible
-                            display: 'flex',
-                            flexDirection: 'column', // Organise les enfants en colonne
-                            justifyContent: 'center', // Centre verticalement
-                            alignItems: 'center', // Centre horizontalement
-                        }}
-                    >
+    sx={{
+        backgroundColor: '#2C4A7C',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }}
+>
 
                     </Grid>
                 </Grid >
