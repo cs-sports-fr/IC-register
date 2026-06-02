@@ -61,7 +61,7 @@ const ForgotPassword = () => {
                             <Box sx={{ justifyContent: 'left', textAlign: 'left' }}>
                                 <InputLabel htmlFor="email" sx={{ marginBottom: 1 }}>Email</InputLabel>
                                 <TextField id="email"
-                                    placeholder="toss@cs-sports.fr"
+                                    placeholder="ic@cs-sports.fr"
                                     variant="outlined"
                                     value={email}
                                     onChange={handleChangeEmail}

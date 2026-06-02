@@ -109,13 +109,13 @@ const DelegationDistances = () => {
                     fontWeight: 'bold',
                     width: '70%',
                 }}>
-Depuis quelques années, le TOSS essaie de s'aligner avec les enjeux contemporains et propose de plus en plus de démarches éco-responsables destinées à réduire son impact environnemental 💡<br />
+Depuis quelques années, les IC essaient de s'aligner avec les enjeux contemporains et propose de plus en plus de démarches éco-responsables destinées à réduire son impact environnemental 💡<br />
 Cette année, après avoir remarqué qu'un nombre important de bus de délégations fait le trajet chaque année avec des places vacantes, nous souhaitons favoriser le covoiturage entre les écoles ! 🚌<br />
 L'idée est simple : Si une école ramène un nombre faible de participants, elle regarde si une délégation est à proximité d'elle afin de la contacter et d'éventuellement combler les places vacantes dans les cars ! 
 Cette démarche est gagnante pour tout le monde : <br /> <br />
 • Pour la délégation, le prix par personne du transport est diminué 💸<br />
 • ⁠Pour l'école la contactant, elle dispose d'une solution de transport à moindre prix 💰<br />
-• ⁠Pour notre impact, le nombre de voitures individuelles se rendant sur le TOSS est diminué ! 🎉<br />
+• ⁠Pour notre impact, le nombre de voitures individuelles se rendant aux IC est diminué ! 🎉<br />
 <br />
 Vous trouverez ci-dessous les contacts des délégations les plus proches de votre école ! 
 

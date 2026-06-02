@@ -31,8 +31,8 @@ const Navbar = ({ navigation }) => {
                         <Box>
                             <a href="/">
                             <img
-                                src={isDarkMode ? "/images/logo_toss_light.png" : "/images/logo_toss_dark.png"}
-                                alt="Logo Toss"
+                                src={isDarkMode ? "/images/logo_ic_light.png" : "/images/logo_ic_dark.png"}
+                                alt="Logo IC"
                                 width={40}
                                 height={40}
                             />

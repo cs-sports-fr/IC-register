@@ -223,7 +223,7 @@ const UserDetailTeam = () => {
         ) && (
             <Alert severity="error">
                 Pour le logement chez un·e ami·e ! <br /> <br />
-            Ton hébergeur et toi-même avez reçu des mails contenant toutes les informations. N'hésite pas à rappeler à ton hébergeur de signer l'accord d'hébergement demandé dans le mail qu'il·elle a reçu sans quoi ton inscription au TOSS ne peut être validée.         
+            Ton hébergeur et toi-même avez reçu des mails contenant toutes les informations. N'hésite pas à rappeler à ton hébergeur de signer l'accord d'hébergement demandé dans le mail qu'il·elle a reçu sans quoi ton inscription aux IC ne peut être validée.         
             </Alert>
         )}
 

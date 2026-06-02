@@ -24,7 +24,7 @@ const UserList = ({ headerItem, columns, users, modify, onModify, ...props }) =>
                                 <TableRow key={indexT}>
                                     {columns.map((column, indexC) => (
                                         column?.type === "email" ?
-                                            <TableCell key={indexC} align={column?.align}><Link href={`mailto:${user[column?.key]}?subject=[TOSS] `}>{user[column?.key]}</Link></TableCell>
+                                            <TableCell key={indexC} align={column?.align}><Link href={`mailto:${user[column?.key]}?subject=[IC]`}>{user[column?.key]}</Link></TableCell>
                                             :
                                             column?.type === "index" ?
                                                 <TableCell key={indexC} align={column?.align}>

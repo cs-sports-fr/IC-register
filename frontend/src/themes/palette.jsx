@@ -24,22 +24,22 @@ const GREY = {
 };
 
 const PRIMARY = {
-    lighter: '#f7d0d6',
-    light: '#d97080',
-    main: '#C1475B',
-    dark: '#8f2a3b',
-    darker: '#5e1225',
-    contrastText: '#f3f7f4',
-    contrastTextLight: '#2d0a10',
+    lighter: '#b8c8e4',
+    light: '#7FA1D1',
+    main: '#373A67',
+    dark: '#252850',
+    darker: '#151730',
+    contrastText: '#FFF4E3',
+    contrastTextLight: '#373A67',
 };
 
 const SECONDARY = {
-    // lighter: '#D6E4FF',
-    // light: '#84A9FF',
-    main: '#f4d2ea',
-    // dark: '#1939B7',
-    // darker: '#091A7A',
-    contrastText: '#f3f7f4',
+    lighter: '#fde8ed',
+    light: '#F6CCD3',
+    main: '#6C93C9',
+    dark: '#4a6fa0',
+    darker: '#2d4a70',
+    contrastText: '#373A67',
 };
 
 const INFO = {
@@ -89,22 +89,22 @@ const palette = {
     grey: GREY,
     divider: alpha(GREY[100], 0.44),
     text: {
-        primary: PRIMARY.contrastText,
+        primary: PRIMARY.main,
         secondary: SECONDARY.contrastText,
         disabled: GREY[500],
         black: '#101218'
     },
     background: {
-        paper: '#FAF7F2',
-        default: '#FAF7F2',
+        paper: '#FFF4E3',
+        default: '#FFF4E3',
         neutral: GREY[0],
-        navbar: GREY[0],// PRIMARY.main
-        drawer: GREY[800],
+        navbar: GREY[0],
+        drawer: PRIMARY.main,
     },
     action: {
         active: GREY[600],
         hover: alpha(PRIMARY.main, 0.08),
-        selected: alpha(PRIMARY.main, 1),//alpha(GREY[100], 0.35)
+        selected: alpha(PRIMARY.main, 1),
         disabled: alpha(GREY[500], 0.8),
         disabledBackground: alpha(GREY[500], 0.24),
         focus: alpha(GREY[500], 0.24),

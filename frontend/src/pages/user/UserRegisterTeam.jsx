@@ -18,7 +18,7 @@ const Onboarding = ({ onFinish }) => {
     const slides = [
         {
             title: "Bienvenue sur le site d'inscription !",
-            content: "Lisez attentivement les instructions pour inscrire votre équipe au TOSS.",
+            content: "Lisez attentivement les instructions pour inscrire votre équipe aux IC.",
             image: null,
         },
         {

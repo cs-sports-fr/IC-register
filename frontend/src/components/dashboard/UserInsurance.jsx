@@ -54,7 +54,7 @@ function UserInsurance({ minHeight }) {
                     }}
                 >
                     <Typography>
-                    Nous souhaitons vous informer que cette année, le TOSS n’est pas labellisé par la FFSU. <br /><br />
+                    Nous souhaitons vous informer que cette année, les IC ne sont pas labellisés par la FFSU. <br /><br />
                     Cette décision a été prise car la FFSU imposait cette année que tous nos participants soient licenciés chez eux, ce qui aurait causé un surcout de 35€ pour tous les non licenciés. <br /><br />Cette obligation aurait impliqué un coût supplémentaire de 35€ pour chaque participant non licencié, ce qui allait à l’encontre de notre volonté de rendre le tournoi accessible à tous. D’autres grands tournois étudiants, comme le CCL, ont également fait ce choix.
 
 <br /><br />Ce choix n’enlève rien à la protection des participants : tous nos participants seront couverts par notre assurance tout au long du week-end, offrant les mêmes garanties que celles de la FFSU. <br /><br /><strong>   Du point de vue du participant, cela ne change donc absolument rien par rapport aux années précédentes.</strong>

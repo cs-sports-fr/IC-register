@@ -77,7 +77,7 @@ function Chartes() {
                 } else if (e.response.status === 404) {
                     showSnackbar("Aucun compte trouvé avec cet email. Vérifiez l'adresse saisie.", 7000, "error");
                 } else {
-                    showSnackbar(`Une erreur est survenue (code ${e.response.status}). Réessayez ou contactez un membre de l'organisation du TOSS.`, 7000, "error");
+                    showSnackbar(`Une erreur est survenue (code ${e.response.status}). Réessayez ou contactez un membre de l'organisation des IC.`, 7000, "error");
                 }
             });
     };
@@ -94,7 +94,7 @@ function Chartes() {
             <Grid container spacing={2} height={'102vh'}>
                 <Grid item md={6} xs={12} sx={{ textAlign: 'center', alignSelf: "center" }}>
                     <Grid py={'10vh'} px={'25%'} sx={{}}>
-                        <Typography sx={{ fontSize: '2rem', fontWeight: 'bold', mb: 1.5, letterSpacing: '0.001rem' }}>CHARTE INDIVIDUELLE DU TOSS et CGI</Typography>
+                        <Typography sx={{ fontSize: '2rem', fontWeight: 'bold', mb: 1.5, letterSpacing: '0.001rem' }}>CHARTE INDIVIDUELLE DES IC et CGI</Typography>
                         <Box m={'1vw'}><Button fullWidth onClick={handleReadCharte}>Consulter la charte</Button></Box>
                         <Box m={'1vw'}><Button fullWidth onClick={handleReadCGI}>Consulter les CGI</Button></Box>
 
@@ -105,7 +105,7 @@ function Chartes() {
                                     <Box sx={{ justifyContent: 'left', textAlign: 'left' }}>
                                         <InputLabel htmlFor="email" sx={{ marginBottom: 1 }}>Email</InputLabel>
                                         <TextField id="email"
-                                            placeholder="toss@cs-sports.fr"
+                                            placeholder="ic@cs-sports.fr"
                                             variant="outlined"
                                             value={email}
                                             onChange={handleChangeEmail}
@@ -154,7 +154,7 @@ function Chartes() {
                 </Grid>
                 <Grid item md={6} xs={12}
                     sx={{
-                        backgroundImage: 'url(/images/soiree.jpeg)', // Remplacez chemin/vers/votre/image.jpg par le chemin réel de votre image
+                        backgroundImage: 'url(/images/photoIC.jpeg)', // Remplacez chemin/vers/votre/image.jpg par le chemin réel de votre image
                         backgroundSize: 'cover', // Couvre toute la zone disponible sans perdre les proportions de l'image
                         backgroundPosition: 'center', // Centre l'image dans la zone disponible
                         display: 'flex',

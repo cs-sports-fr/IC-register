@@ -36,7 +36,7 @@ const NotFoundPage = () => {
                     fontSize: { xs: '2rem', md: '3rem', lg: '4rem' },
                     marginBottom: '1rem'
                 }}>
-                    Erreur 4<img src='images/logo_toss_light.png' alt="logo" style={{ width: { xs: '2rem', md: '3rem', lg: '4rem' }, height: '3rem', paddingTop: '1rem' }} />4 :
+                    Erreur 4<img src='images/logo_ic_light.png' alt="logo IC" style={{ width: { xs: '2rem', md: '3rem', lg: '4rem' }, height: '3rem', paddingTop: '1rem' }} />4 :
                 </Typography>
                 <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '3rem', lg: '4rem' }, marginBottom: '1rem' }}>
                     Cette page n&apos;existe pas

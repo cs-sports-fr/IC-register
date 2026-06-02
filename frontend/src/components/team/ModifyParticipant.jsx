@@ -31,7 +31,7 @@ const ModifyParticipant = ({ open, onClose, goodies, packs, participant, errors,
                 } else if (typeof detail === 'string' && detail.trim()) {
                     showSnackbar(`Erreur lors de la suppression (${status}) : ${detail}`, 7000, 'error');
                 } else {
-                    showSnackbar(`Impossible de supprimer le joueur (code ${status}). Réessayez ou contactez un membre de l'équipe du TOSS.`, 7000, 'error');
+                    showSnackbar(`Impossible de supprimer le joueur (code ${status}). Réessayez ou contactez un membre de l'équipe des IC.`, 7000, 'error');
                 }
             });
     }

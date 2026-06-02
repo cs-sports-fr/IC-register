@@ -75,9 +75,9 @@ const Login = () => {
     return (
         <LayoutUnauthenticated isDarkMode={isDarkMode}>
             <Grid container spacing={2} height={'102vh'}>
-                <Grid item md={6} xs={12} sx={{textAlign: 'center', alignSelf: "center",backgroundColor: '#FAF7F2'}}> {/* xs={12} md={6} pour responsive a faire */}
+                <Grid item md={6} xs={12} sx={{textAlign: 'center', alignSelf: "center",backgroundColor: '#FFF4E3'}}> {/* xs={12} md={6} pour responsive a faire */}
                     <Grid py={'10vh'} px={'22%'} sx={{}}>
-                        <Typography variant="h1" sx={{ fontSize: '7rem', fontWeight: 'bold', color: '#C1475B' }}>IC</Typography>
+                        <Typography variant="h1" sx={{ fontSize: '7rem', fontWeight: 'bold', color: '#373A67' }}>IC</Typography>
                         <DividerText text="Connexion" />
                         <Box m={'1vw'}>
                             <form onSubmit={handleLogin}>
@@ -149,14 +149,14 @@ const Login = () => {
                 </Grid>
                 <Grid item md={6} xs={12}
                     sx={{
-                        backgroundColor: '#2C4A7C', // Remplacez chemin/vers/votre/image.jpg par le chemin réel de votre image
+                        backgroundColor: '#373A67',
                         display: 'flex',
-                        flexDirection: 'column', // Organise les enfants en colonne
-                        justifyContent: 'center', // Centre verticalement
-                        alignItems: 'center', // Centre horizontalement
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                     }}
                 >
-                    <Typography variant="login" sx={{ fontSize: '6rem', textAlign: 'center' }}>ESPACE PARTICIPANT</Typography>
+                    <Typography variant="login" sx={{ fontSize: '6rem', textAlign: 'center', color: '#FFF4E3' }}>ESPACE PARTICIPANT</Typography>
                     {/* <Box sx={{ mt: 'auto', display: 'block' }}>
                         <Typography variant="body1">&ldquo;On peut mettre une quote ici si jamais.&rdquo;</Typography>
                         <Typography variant="caption">Sofia Davis</Typography>
