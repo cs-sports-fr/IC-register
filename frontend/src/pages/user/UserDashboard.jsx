@@ -9,7 +9,6 @@ import axios from "axios";
 import { parseTeamDashboard } from "../../utils/parseTeam";
 import { calculatePrice } from "../../utils/calculatePrice";
 import UserTimeline from "../../components/dashboard/UserTimeline";
-import UserInsurance from "../../components/dashboard/UserInsurance";
 
 function UserDashboard() {
 
@@ -36,13 +35,9 @@ function UserDashboard() {
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Navbar navigation={routesForUser} />
-            <Box sx={{ display: 'flex', bgcolor: 'background.drawer' }}>
+            <Box sx={{ display: 'flex', bgcolor: 'background.drawer', color: 'primary.contrastText' }}>
                 <Grid container spacing={0} sx={{ mx: 8, my: 4 }}>
-                <Grid item xs={12} md={12} sx={{ p: 2, bgcolor: 'background.drawer' }}>
-                        <UserInsurance minHeight={'25vh'}  />
-                    </Grid>
-
-                    <Grid item xs={12} sx={{ p: 2, bgcolor: 'background.drawer' }}>
+                <Grid item xs={12} sx={{ p: 2, bgcolor: 'background.drawer' }}>
                         <UserTimeline teams={teams} />
                     </Grid>
 

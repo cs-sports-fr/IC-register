@@ -69,7 +69,7 @@ const SuperAdminUser = () => {
 
 
     return (
-        <Box display={'flex'} flexDirection={'column'} height={'100vh'} sx={{ overflowX: 'hidden', bgcolor: 'background.drawer' }}>
+        <Box display={'flex'} flexDirection={'column'} height={'100vh'} sx={{ overflowX: 'hidden', bgcolor: 'background.drawer', color: 'primary.contrastText' }}>
             {/* // Navbar */}
             <Navbar navigation={routesForSuperAdmin} />
 

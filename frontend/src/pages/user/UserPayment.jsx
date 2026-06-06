@@ -180,7 +180,7 @@ const UserPayment = () => {
     }, []);
 
     return (
-        <Box display={'flex'} flexDirection={'column'} height={'100vh'} sx={{ overflowX: 'hidden', backgroundColor: 'background.drawer' }}>
+        <Box display={'flex'} flexDirection={'column'} height={'100vh'} sx={{ overflowX: 'hidden', backgroundColor: 'background.drawer', color: 'primary.contrastText' }}>
             {/* Navbar */}
             <Navbar navigation={routesForUser} />
             <Dialog

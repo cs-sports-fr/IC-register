@@ -9,8 +9,6 @@ from prisma.types import (
     TeamWhereInput,
     TeamInclude,
     ParticipantWhereInput,
-    FindManyParticipantArgsFromTeam,
-    ParticipantIncludeFromParticipantRecursive1,
 )
 
 
@@ -50,16 +48,16 @@ FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
 )
 async def create_team(
     name: str,
-    level: str,
     sportId: int,
     participants: List[ParticipantInput],
     user: Annotated[User, Depends(check_user)],
+    level: str = "",
 ):
     general_config = await prisma.generalconfig.find_first()
     if general_config is None:
         raise HTTPException(status_code=500, detail="General config not found")
 
-    if not general_config.isRegistrationOpen:
+    if not general_config.registration_open:
         raise HTTPException(
             status_code=400, detail="Registration is still closed"
         )
@@ -72,93 +70,23 @@ async def create_team(
             status_code=400, detail="A team with this name already exists"
         )
 
-    # Validation pour la natation : vérifier qu'il n'y a pas de doublons dans les épreuves
-    sport = await prisma.sport.find_unique(where={"id": sportId})
-    if sport and "natation" in sport.sport.lower():
-        # Filtrer les participants qui ont des épreuves sélectionnées
-        filled_participants = [p for p in participants if p.swimming50mEventId or p.swimming100mEventId]
-        
-        # Vérifier les doublons pour les 50m
-        event_50m_ids = [p.swimming50mEventId for p in filled_participants if p.swimming50mEventId]
-        if len(event_50m_ids) != len(set(event_50m_ids)):
-            raise HTTPException(
-                status_code=400, 
-                detail="duplicate swimming event: Plusieurs participants ne peuvent pas être assignés à la même épreuve 50m"
-            )
-        
-        # Vérifier les doublons pour les 100m
-        event_100m_ids = [p.swimming100mEventId for p in filled_participants if p.swimming100mEventId]
-        if len(event_100m_ids) != len(set(event_100m_ids)):
-            raise HTTPException(
-                status_code=400, 
-                detail="duplicate swimming event: Plusieurs participants ne peuvent pas être assignés à la même épreuve 100m"
-            )
-
     team = await prisma.team.create(
         data=TeamCreateInput(
             name=name,
-            level=level,
-            sportId=sportId,
+            sport_id=sportId,
             status=TeamStatus.Incomplete,
-            teamAdminUserId=user.id,
-            schoolId=user.schoolId,
+            leader_id=user.id,
+            school_id=user.school_id,
         )
     )
-    sport= await prisma.sport.find_unique(where={"id": sportId})
-    try:
-        await send_mail_inscription_equipe(
-            user.email,
-            user.firstname,
-            sport.sport,
-            team.name
-            
-        )
-    except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Failed to send team registration email: {e}"
-        )
 
-
-    url = f"{FRONTEND_URL}/charte"
     for new_participant in participants:
-
-        charte_password = generate_password()
-        participant = await add_participant_to_team(
+        await add_participant_to_team(
             team_id=team.id,
-            school_id=team.schoolId,
-            charte_password=charte_password,
+            school_id=team.school_id,
             new_participant=new_participant,
             sport_id=sportId,
         )
-
-        try:
-            await send_charte_email(
-                participant.email,
-                participant.firstname,
-                participant.chartePassword,
-                url,
-            )
-        except Exception:
-            pass
-
-        try:
-            if participant.isCaptain is False:
-                await send_mail_inscription_participant_email(
-                    participant.email,
-                    participant.firstname,
-                )
-        except Exception:
-            pass
-
-        try:
-            if participant.mailHebergeur is not None:
-                await send_host_rez_email(participant.mailHebergeur, participant.firstname, participant.lastname)
-
-            if participant.packId == 1 or participant.packId == 6:
-                await send_participant_rez_email(participant.email, participant.firstname)
-        except Exception:
-            pass
 
     team, _ = await check_and_update_team_amount_to_pay_then_get_team(
         team_id=team.id
@@ -166,11 +94,8 @@ async def create_team(
     if team is None or team.participants is None or len(team.participants) == 0:
         try:
             await prisma.team.delete(where=TeamWhereInput(id=team.id))
-        except Exception as e:
-            raise HTTPException(
-                status_code=500,
-                detail="Error while creating team: deleting team failed",
-            )
+        except Exception:
+            pass
         raise HTTPException(
             status_code=500,
             detail="Error while creating team: no participant added",
@@ -300,26 +225,18 @@ async def get_teams(user: Annotated[User, Depends(check_user)]):
     if user.status == EnumUserStatus.SuperAdminStatus:
         teams = await prisma.team.find_many(
             include=TeamInclude(
-                participants=FindManyParticipantArgsFromTeam(
-                    include=ParticipantIncludeFromParticipantRecursive1(
-                        products=True
-                    )
-                ),
+                participants=True,
                 sport=True,
             )
         )
         return teams
 
     elif (user.status == EnumUserStatus.RespoDelegStatus
-    and user.schoolId is not None): 
+    and user.school_id is not None):
         teams = await prisma.team.find_many(
-            where=TeamWhereInput(schoolId=user.schoolId),
+            where=TeamWhereInput(school_id=user.school_id),
             include=TeamInclude(
-                participants=FindManyParticipantArgsFromTeam(
-                    include=ParticipantIncludeFromParticipantRecursive1(
-                        products=True
-                    )
-                ),
+                participants=True,
                 sport=True,
             )
         )
@@ -327,31 +244,23 @@ async def get_teams(user: Annotated[User, Depends(check_user)]):
 
     elif (
         user.status == EnumUserStatus.AdminStatus
-        and user.sportAdminId is not None
+        and user.school_id is not None
     ):
         teams = await prisma.team.find_many(
             where=TeamWhereInput(
-                schoolId=user.schoolId, sportId=user.sportAdminId
+                school_id=user.school_id
             ),
             include=TeamInclude(
-                participants=FindManyParticipantArgsFromTeam(
-                    include=ParticipantIncludeFromParticipantRecursive1(
-                        products=True
-                    )
-                ),
+                participants=True,
                 sport=True,
             ),
         )
         return teams
 
     teams = await prisma.team.find_many(
-        where=TeamWhereInput(teamAdminUserId=user.id),
+        where=TeamWhereInput(leader_id=user.id),
         include=TeamInclude(
-            participants=FindManyParticipantArgsFromTeam(
-                include=ParticipantIncludeFromParticipantRecursive1(
-                    products=True
-                )
-            ),
+            participants=True,
             sport=True,
         ),
     )
@@ -419,7 +328,7 @@ async def get_teams_by_status_and_sport(
     
     # Add sport filter if provided
     if sport_id:
-        where_conditions["sportId"] = sport_id
+        where_conditions["sport_id"] = sport_id
     
     where_input = TeamWhereInput(**where_conditions)
     

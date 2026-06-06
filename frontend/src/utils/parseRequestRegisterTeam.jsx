@@ -1,29 +1,16 @@
 
 const isParticipantEmpty = (participant) => {
-
-    return participant.email === null &&
+    return participant.firstname === null &&
         participant.lastname === null &&
-        participant.firstname === null &&
         participant.dateOfBirth === null &&
         participant.gender === null &&
-        participant.packId === null &&
-        participant.isVegan === false &&
-        participant.hasAllergies === false &&
-        participant.licenceID === '' &&
-        Array.isArray(participant.productsIds) && participant.productsIds.length === 0;
+        participant.packId === null;
 }
 
-const parseRegisterTeamRequest = (participants) => { // remove empty participants
-
+const parseRegisterTeamRequest = (participants) => {
     return participants
-        .filter(participant => !isParticipantEmpty(participant))
-        .map(participant => ({
-            ...participant,
-            email: participant.email ? participant.email.toLowerCase() : participant.email,
-        }));
+        .filter(participant => !isParticipantEmpty(participant));
 }
-
-
 
 
 export { isParticipantEmpty, parseRegisterTeamRequest }

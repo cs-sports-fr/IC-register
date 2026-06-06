@@ -16,14 +16,15 @@ const Navbar = ({ navigation }) => {
                     width: '100%',
                     maxWidth: '100vw',
                     boxSizing: 'border-box',
-                    paddingX: { xs: 2, md: '3%' }, 
-                    height: '4rem', 
-                    zIndex: 15, 
+                    paddingX: { xs: 2, md: '3%' },
+                    height: '4rem',
+                    zIndex: 15,
                     display: 'flex',
                     alignItems: 'center',
                     overflowX: 'hidden',
                     overflowY: 'hidden',
-                    backgroundColor: 'background.default'
+                    backgroundColor: 'background.default',
+                    color: 'text.primary'
                 }}
             >
                 <Box sx={{ display: "flex", flexGrow: 1, justifyContent: 'space-between', flexDirection: 'row', minWidth: 0 }}>

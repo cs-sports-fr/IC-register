@@ -1,0 +1,211 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-py"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// ENUMS (convertis en String pour SQLite)
+// ============================================================================
+
+// Remplacé par String dans les models
+
+// ============================================================================
+// MODELS
+// ============================================================================
+
+model User {
+  id                    Int       @id @default(autoincrement())
+  email                 String    @unique
+  password              String
+  firstname             String?
+  lastname              String?
+  status                String    @default("UserStatus") // UserStatus, AdminStatus, SuperAdminStatus
+  phone_number          String?
+  school                School?   @relation(fields: [school_id], references: [id])
+  school_id             Int?
+  teams                 Team[]
+  participants          Participant[]
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("User")
+}
+
+model School {
+  id                    Int       @id @default(autoincrement())
+  name                  String    @unique
+  is_in_idf             Boolean   @default(false)
+  users                 User[]
+  teams                 Team[]
+  latitude              Float?
+  longitude             Float?
+  contact_name          String?
+  contact_email         String?
+  contact_phone         String?
+  paid                  Boolean   @default(false)
+  caution                Boolean   @default(false)
+
+  @@map("School")
+}
+
+model Team {
+  id                    Int       @id @default(autoincrement())
+  name                  String
+  leader_id             Int
+  leader                User      @relation(fields: [leader_id], references: [id])
+  school_id             Int
+  school                School    @relation(fields: [school_id], references: [id])
+  status                String    @default("Incomplete") // Incomplete, Waiting, Awaitingauthorization, PrincipalList, Validated
+  sport_id              Int
+  sport                 Sport     @relation(fields: [sport_id], references: [id])
+  participants          Participant[]
+  matches               Match[]
+  payments              Payment[]
+  packs_count           String    @default("{}")
+  products_count        String    @default("{}")
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("Team")
+}
+
+model Sport {
+  id                    Int       @id @default(autoincrement())
+  sport                 String    @unique
+  nbPlayersMin          Int       @default(1)
+  nbPlayersMax          Int       @default(300)
+  isCollective          Boolean   @default(true)
+  nbOfTeams             Int       @default(64)
+  pointsperwin          Int       @default(0)
+  pointsperdraw         Int       @default(0)
+  pointsperdefeat       Int       @default(0)
+  place                 String    @default("X")
+  numberOfPools         Int       @default(8)
+  numberOfFields        Int       @default(2)
+  poolMatchLength       Int       @default(15)
+  nonPoolMatchLength    Int       @default(30)
+  startTime             DateTime  @default(now())
+  teams                 Team[]
+  participants          Participant[]
+  matches               Match[]
+  pools                 Pool[]
+
+  @@map("Sport")
+}
+
+model Participant {
+  id                    Int       @id @default(autoincrement())
+  user_id               Int?
+  user                  User?     @relation(fields: [user_id], references: [id])
+  team_id               Int
+  team                  Team      @relation(fields: [team_id], references: [id])
+  sport_id              Int
+  sport                 Sport     @relation(fields: [sport_id], references: [id])
+  pack_id               Int?
+  pack                  Pack?     @relation(fields: [pack_id], references: [id])
+  firstname             String
+  lastname              String
+  birthdate             DateTime
+  gender                String    @default("preferNotToSay") // F, M, preferNotToSay
+  allergies             String?
+  insurance             Boolean   @default(false)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("Participant")
+}
+
+model Match {
+  id                    Int       @id @default(autoincrement())
+  team1_id              Int
+  team1                 Team      @relation(fields: [team1_id], references: [id])
+  team2_id              Int
+  sport_id              Int
+  sport                 Sport     @relation(fields: [sport_id], references: [id])
+  pool_id               Int?
+  pool                  Pool?     @relation(fields: [pool_id], references: [id])
+  score_team1           Int?
+  score_team2           Int?
+  duration              Int       @default(0)
+  phase                 String    @default("GroupStage")
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("Match")
+}
+
+model Pool {
+  id                    Int       @id @default(autoincrement())
+  sport_id              Int
+  sport                 Sport     @relation(fields: [sport_id], references: [id])
+  name                  String
+  matches               Match[]
+  createdAt             DateTime  @default(now())
+
+  @@map("Pool")
+}
+
+model Place {
+  id                    Int       @id @default(autoincrement())
+  name                  String
+  latitude              Float
+  longitude             Float
+  description           String?
+  type                  String    @default("Tournoi") // Logement, Tournoi, etc.
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("Place")
+}
+
+model Pack {
+  id                    Int       @id @default(autoincrement())
+  name                  String    @unique
+  price_in_cents        Int
+  participants          Participant[]
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("Pack")
+}
+
+model Product {
+  id                    Int       @id @default(autoincrement())
+  name                  String    @unique
+  price_in_cents        Int
+  picture_link          String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("Product")
+}
+
+model Payment {
+  id                    Int       @id @default(autoincrement())
+  team_id               Int
+  team                  Team      @relation(fields: [team_id], references: [id])
+  amount                Int
+  status                String    @default("Pending")
+  payment_date          DateTime?
+  reference             String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("Payment")
+}
+
+model GeneralConfig {
+  id                    Int       @id @default(1)
+  registration_open     Boolean   @default(true)
+  max_teams_per_school  Int       @default(5)
+  updatedAt             DateTime  @updatedAt
+
+  @@map("GeneralConfig")
+}

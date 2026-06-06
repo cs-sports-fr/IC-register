@@ -191,11 +191,11 @@ const RespoDelegRegisterTeam = () => {
                 {onboardingComplete ? (  // Show onboarding or registration form based on state
                     config?.isRegistrationOpen ? (
                         <>
-                            {sportId == null && <SelectSport callback={(id) => setSportId(id)} sports={sports} callbackType={(bool) => setIsSportCollective(bool)} isCollective={isSportCollective} />}
+                            {sportId == null && <SelectSport callback={(id) => setSportId(id)} sports={sports} callbackType={(bool) => setIsSportCollective(bool)} />}
                             {sportId !== null && <RegisterTeam sport={sportId} />}
                         </>
                     ) : (
-                        <Box sx={{ bgcolor: 'background.drawer', width: '100%', display: 'flex', justifyContent: 'center', textAlign: 'center', flexDirection: 'column' }}>
+                        <Box sx={{ bgcolor: 'background.drawer', color: 'primary.contrastText', width: '100%', display: 'flex', justifyContent: 'center', textAlign: 'center', flexDirection: 'column' }}>
                             <Typography variant="h4" align="center">Les inscriptions sont fermées</Typography>
                             {config?.expectedRegistrationDate && <Typography variant="h6" align="center">Ouverture des inscriptions dans {countdown}</Typography>}
                         </Box>

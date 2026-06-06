@@ -54,7 +54,7 @@ const AdminSportDetail = () => {
     const routes = permission === 'SuperAdminStatus' ? routesForSuperAdmin : routesForAdmin;
 
     return (
-        <Box display={'flex'} flexDirection={'column'} height={'100vh'} sx={{ bgcolor: 'background.drawer', overflowX: 'hidden', width: '100%' }}>
+        <Box display={'flex'} flexDirection={'column'} height={'100vh'} sx={{ bgcolor: 'background.drawer', color: 'primary.contrastText', overflowX: 'hidden', width: '100%' }}>
             {/* // Navbar */}
             <Navbar navigation={routes} />
 

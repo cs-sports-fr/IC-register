@@ -29,7 +29,7 @@ prisma = getPrisma()
 async def get_all_schools():
     schools = await prisma.school.find_many()
     ordered_schools = sorted(
-        schools, key=lambda x: (x.isInIDF, x.name)
+        schools, key=lambda x: (x.is_in_idf, x.name)
     )
     return ordered_schools
 

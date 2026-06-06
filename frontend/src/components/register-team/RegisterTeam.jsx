@@ -417,7 +417,7 @@ const RegisterTeam = ({ sport }) => {
         <Grid container spacing={2} direction="row" justifyContent="center" alignItems="center"
             sx={{ display: "flex", flexGrow: 1, mt: 0 }}
         >
-            <Grid item xs={2.5} sx={{ height: '100%', bgcolor: 'background.drawer' }}>
+            <Grid item xs={2.5} sx={{ height: '100%', bgcolor: 'background.drawer', color: 'primary.contrastText' }}>
                 <Box sx={{ display:'flex', flexDirection: 'column',px: 3, py: 3,gap:3 }}>
                     <Box>
                         <TextField
@@ -429,10 +429,11 @@ const RegisterTeam = ({ sport }) => {
                             placeholder="Nom de l'équipe"
                             error={!!errors.teamName}
                             helperText={errors.teamName}
+                            sx={{ '& .MuiOutlinedInput-root': { bgcolor: 'background.paper', color: 'text.primary' } }}
                         />
                     </Box>
                     <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2}}>
-                        <FormControl fullWidth error={!!errors.teamLevel}>
+                        <FormControl fullWidth error={!!errors.teamLevel} sx={{ '& .MuiOutlinedInput-root': { bgcolor: 'background.paper', color: 'text.primary' } }}>
                             <Select
                             id="teamLevel"
                             variant="outlined"
@@ -454,13 +455,6 @@ const RegisterTeam = ({ sport }) => {
                         </Tooltip>
                     </Box>
 
-                    <Alert severity="info">
-                                Veuillez ajouter [DELEG] au début du nom de votre équipe si votre école est une délégation ET que vous utilisez une place réservée dans ce sport pour votre école pour CETTE équipe !
-                            </Alert>
-                    
-                    
-                            
-                        
                 </Box>
                 <Divider sx={{ margin: 3 }} />
                 <Box sx={{ margin: 3 }}>
@@ -574,8 +568,8 @@ const RegisterTeam = ({ sport }) => {
                                             id="pack"
                                             variant="outlined"
                                             fullWidth
-                                            options={sport.id !== 27 ? packs.filter(option => ![7, 8, 9, 10, 11, 12].includes(option.id)) : packs}
-                                            getOptionLabel={(option) => option.name /*option.id === 5 ? "Rez sans Diner" : option.name*/}
+                                            options={packs}
+                                            getOptionLabel={(option) => option.name}
                                             renderInput={(params) =>
                                                 <TextField {...params}
                                                     placeholder="Rechercher pack"

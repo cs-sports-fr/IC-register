@@ -196,32 +196,12 @@ async def team_add_participants(
     existing_team = await get_team_if_allowed(team_id, user)
 
     for new_participant in participants:
-
-        charte_password = generate_password()
-
-        participant = await add_participant_to_team(
+        await add_participant_to_team(
             team_id=existing_team.id,
-            school_id=existing_team.schoolId,
-            charte_password=charte_password,
+            school_id=existing_team.school_id,
             new_participant=new_participant,
-            sport_id=existing_team.sportId,
+            sport_id=existing_team.sport_id,
         )
-
-        url = f"{FRONTEND_URL}/charte"
-
-        await send_charte_email(
-            participant.email,
-            participant.firstname,
-            participant.chartePassword,
-            url,
-        )
-
-        if participant.packId == 1 or participant.packId == 6: ## TODO change to better logic
-            await send_host_rez_email(participant.mailHebergeur, participant.firstname, participant.lastname)
-        
-        if participant.packId == 1 or participant.packId == 6: ## TODO change to better logic
-            await send_participant_rez_email(participant.email, participant.firstname)
-
 
     updated_team, _ = await check_and_update_team_amount_to_pay_then_get_team(
         team_id=existing_team.id
@@ -899,140 +879,81 @@ async def get_participants_details(
     school_ids: Optional[List[int]] = Query(None, description="Filter by school IDs"),
     pack_ids: Optional[List[int]] = Query(None, description="Filter by pack IDs"),
     gender: Optional[List[str]] = Query(None, description="Filter by participant gender"),
-    search: Optional[str] = Query(None, description="Search participants by name or email")
+    search: Optional[str] = Query(None, description="Search participants by name")
 ):
     try:
-        # Build where conditions based on provided filters
         where_conditions = {}
-        
-        # Only include participants from specific teams if filtered
+
         team_where = {}
         if team_status:
             team_where["status"] = {"in": team_status}
         if sport_ids:
-            team_where["sportId"] = {"in": sport_ids}
+            team_where["sport_id"] = {"in": sport_ids}
         if school_ids:
-            team_where["schoolId"] = {"in": school_ids}
+            team_where["school_id"] = {"in": school_ids}
         if team_where:
             where_conditions["team"] = team_where
-        
-        # Add pack filter directly if provided
+
         if pack_ids:
-            where_conditions["packId"] = {"in": pack_ids}
-        
-        # Add gender filter directly if provided
+            where_conditions["pack_id"] = {"in": pack_ids}
+
         if gender:
             where_conditions["gender"] = {"in": gender}
-        
-        # Add search filter on firstname, lastname, or email
+
         if search:
             where_conditions["OR"] = [
-                {"firstname": {"contains": search, "mode": "insensitive"}},
-                {"lastname": {"contains": search, "mode": "insensitive"}},
-                {"email": {"contains": search, "mode": "insensitive"}}
+                {"firstname": {"contains": search}},
+                {"lastname": {"contains": search}},
             ]
-        
-        # Get all participants that match our filters, including their products
+
         participants = await prisma.participant.find_many(
             where=where_conditions,
             include={
                 "team": {
                     "include": {
                         "sport": True,
-                        "school": True
+                        "school": True,
                     }
                 },
                 "pack": True,
-                "products": True
             },
-            take=502  
+            take=1000,
         )
-        
+
         if not participants:
             return {"message": "No participants found matching the criteria", "participants": []}
-        
-        # Format each participant with the requested information
+
         participants_details = []
         for participant in participants:
-            pack_price = participant.pack.priceInCents / 100 if participant.pack else 0
-            products_price = (
-                sum(product.priceInCents / 100 for product in participant.products)
-                if participant.products
-                else 0
-            )
+            pack_price = participant.pack.price_in_cents / 100 if participant.pack else 0
+            effective_price = pack_price
 
-            # Remises écoles réelles (utilisées pour le prix réellement payé)
-            real_school_discount = (
-                43 if participant.team and participant.team.schoolId in [34] else 0
-            )
-            real_school_discount2 = (
-                10
-                if participant.team
-                and participant.team.schoolId in [2, 93, 97, 43, 10, 59, 118]
-                else 0
-            )
-
-            # Suppléments sport : 15€ pour l'équitation (id 14), 20€ pour le golf (id 19)
-            sport_extra_fee = 0
-            if participant.team:
-                if participant.team.sportId == 14:
-                    sport_extra_fee = 15
-                elif participant.team.sportId == 19:
-                    sport_extra_fee = 20
-            sport_discount = (
-                10 if participant.team and participant.team.sportId == 34 else 0
-            )
-
-            # Prix réellement payé par le participant (organisateur)
-            effective_price = (
-                pack_price
-                + products_price
-                - real_school_discount
-                - real_school_discount2
-                + sport_extra_fee
-                - sport_discount
-            )
-            
             participant_detail = {
                 "id": participant.id,
                 "firstname": participant.firstname,
                 "lastname": participant.lastname,
-                "email": participant.email,
-                "mobile": participant.mobile,
-                "isCaptain": participant.isCaptain,
                 "gender": participant.gender or "Unknown",
-                "products": [
-                    {
-                        "id": product.id,
-                        "name": product.name,
-                        "price": product.priceInCents/100
-                    } for product in participant.products
-                ] if participant.products else [],
+                "allergies": participant.allergies,
+                "insurance": participant.insurance,
+                "products": [],
                 "pack": {
                     "id": participant.pack.id,
                     "name": participant.pack.name,
-                    "price": pack_price
+                    "price": pack_price,
                 } if participant.pack else None,
                 "school": {
-                    "id": participant.team.schoolId,
-                    "name": participant.team.school.name if participant.team and participant.team.school else "Unknown"
+                    "id": participant.team.school_id,
+                    "name": participant.team.school.name if participant.team and participant.team.school else "N/A",
                 } if participant.team else None,
                 "team": {
-                    "id": participant.teamId,
-                    "name": participant.team.name if participant.team else "Unknown"
-                } if participant.teamId else None,
+                    "id": participant.team_id,
+                    "name": participant.team.name if participant.team else "N/A",
+                } if participant.team_id else None,
                 "sport": {
-                    "id": participant.team.sportId,
-                    "name": participant.team.sport.sport
-                    if participant.team and participant.team.sport
-                    else "Unknown",
-                }
-                if participant.team
-                else None,
-                # Prix affiché au participant ET prix réellement payé 
-                # (pack + goodies + suppléments − remises écoles éventuelles)
+                    "id": participant.team.sport_id,
+                    "name": participant.team.sport.sport if participant.team and participant.team.sport else "N/A",
+                } if participant.team else None,
                 "total_price": effective_price,
-                "effective_price": effective_price,
             }
             
             participants_details.append(participant_detail)

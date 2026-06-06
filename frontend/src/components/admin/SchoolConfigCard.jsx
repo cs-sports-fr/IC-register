@@ -53,8 +53,6 @@ export default SchoolConfigCard;
 const columns = [
     { label: "N°", align: "left", key: "id", type: 'index' },
     { label: "Nom", align: "center", key: "name" },
-    { label: "IDF", align: "center", key: "isInIDF", type: 'boolean' },
-    {label: 'Deleg',align: 'center', key: 'isDeleg', type: 'boolean'},
-    {label:'Paiement', align: 'center', key: 'isPaid', type: 'boolean'},
-    {label:'Caution', align: 'center', key: 'isCautionPaid', type: 'boolean'},
+    { label: "Paiement", align: "center", key: "paid", type: 'boolean' },
+    { label: "Caution", align: "center", key: "caution", type: 'boolean' },
 ]

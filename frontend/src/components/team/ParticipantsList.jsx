@@ -333,7 +333,7 @@ const ParticipantsList = ({ headerItem, columns, players, modify, onModify, team
                                 )) :
                                     <TableRow>
                                         <TableCell colSpan={columns.length + (modify ? 1 : 0)} align="center">
-                                            <Typography component="h2" sx={{ color: 'divider', marginTop: '1rem' }}>
+                                            <Typography component="h2" sx={{ color: 'text.disabled', marginTop: '1rem' }}>
                                                 Aucune joueurs dans l&apos;équipe
                                             </Typography>
                                         </TableCell>

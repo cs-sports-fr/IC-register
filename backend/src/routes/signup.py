@@ -47,21 +47,21 @@ async def sign_up(signup_data: Signup):
                 email=signup_data.email,
                 firstname=signup_data.firstname,
                 lastname=signup_data.lastname,
-                mobile=signup_data.mobile,
-                schoolId=signup_data.schoolId,
+                phone_number=signup_data.mobile,
+                school_id=signup_data.schoolId,
                 password=hashed_password,
                 status=EnumUserStatus.UserStatus,
             )
         )
-        await send_welcome_email(
-            signup_data.email,
-            signup_data.firstname,
-        )
-        
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error while creating user : {e}",
         )
+
+    try:
+        await send_welcome_email(signup_data.email, signup_data.firstname)
+    except Exception:
+        pass  # Email failure must not block registration
 
     return {}

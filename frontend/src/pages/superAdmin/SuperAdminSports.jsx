@@ -115,7 +115,7 @@ import {
  
   
     return (
-        <Box display={'flex'} flexDirection={'column'} height={'100vh'} sx={{ overflowX: 'hidden', bgcolor: 'background.drawer' }}>
+        <Box display={'flex'} flexDirection={'column'} height={'100vh'} sx={{ overflowX: 'hidden', bgcolor: 'background.drawer', color: 'primary.contrastText' }}>
         <Navbar navigation={routes} />
         
         <Box sx={{ px: 4, py: 3, flexDirection: 'column', alignItems: 'center', display: 'flex'}}>

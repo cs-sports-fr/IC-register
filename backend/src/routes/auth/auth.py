@@ -64,7 +64,7 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
             "username": username,
             "permission": current_user.status,
             "id": current_user.id,
-            "sport": current_user.sportAdminId,
+            "sport": getattr(current_user, "sportAdminId", None),
         },
         expires_delta=timedelta(days=4),
     )

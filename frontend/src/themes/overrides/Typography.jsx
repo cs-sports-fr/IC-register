@@ -3,7 +3,7 @@ export default function Typography(theme) {
         MuiTypography: {
             styleOverrides: {
                 root: {
-                    color: theme.palette.text.primary,
+                    color: 'inherit',
                     fontFamily: theme.typography.fontFamily,
                 },
                 separator: {

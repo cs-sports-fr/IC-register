@@ -24,5 +24,37 @@ export default function ComponentsOverrides(theme) {
         ListItem(theme),
         Box(theme),
         TableCell(theme),
+        {
+            MuiPaper: {
+                styleOverrides: {
+                    root: {
+                        color: theme.palette.text.primary,
+                    },
+                },
+            },
+            MuiTableCell: {
+                styleOverrides: {
+                    root: {
+                        color: theme.palette.text.primary,
+                    },
+                },
+            },
+            MuiChip: {
+                styleOverrides: {
+                    label: {
+                        color: 'inherit',
+                    },
+                },
+            },
+            MuiToggleButton: {
+                styleOverrides: {
+                    root: {
+                        '&.Mui-selected': {
+                            color: '#fff',
+                        },
+                    },
+                },
+            },
+        },
     );
 }

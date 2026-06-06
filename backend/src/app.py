@@ -21,7 +21,7 @@ from routes.pools import pools_router
 from routes.matches.matches import matches_router
 from routes.participants import participant_router
 from routes.places import places_router
-from routes.medals import medals_router
+# from routes.medals import medals_router  # Medal model not in current IC schema
 from routes.convertpdf import pdf_router
 from routes.tent_assignment import tent_assignment_router
 from routes.swimming import swimming_router
@@ -81,7 +81,7 @@ app.include_router(pools_router)
 app.include_router(matches_router)
 app.include_router(participant_router)
 app.include_router(places_router)
-app.include_router(medals_router)
+# app.include_router(medals_router)
 app.include_router(pdf_router)
 app.include_router(tent_assignment_router)
 app.include_router(swimming_router)

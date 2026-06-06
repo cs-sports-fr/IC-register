@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional
 from fastapi import APIRouter, Depends
 
 from prisma.models import GeneralConfig
@@ -16,17 +17,28 @@ config_router = APIRouter(
 prisma = getPrisma()
 
 
+class ConfigResponse(BaseModel):
+    isRegistrationOpen: bool = False
+    isPaymentOpen: bool = False
+    expectedRegistrationDate: Optional[datetime] = None
+
+
 class GeneralConfigUpdate(BaseModel):
-    editionYear: int
     isRegistrationOpen: bool
     isPaymentOpen: bool
-    expectedRegistrationDate: datetime
+    expectedRegistrationDate: Optional[datetime] = None
 
 
-@config_router.get("", response_model=GeneralConfig)
+@config_router.get("", response_model=ConfigResponse)
 async def get_config():
     config = await prisma.generalconfig.find_first()
-    return config
+    if config is None:
+        return ConfigResponse()
+    return ConfigResponse(
+        isRegistrationOpen=config.registration_open,
+        isPaymentOpen=False,
+        expectedRegistrationDate=None,
+    )
 
 
 @config_router.put(

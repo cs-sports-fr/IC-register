@@ -45,6 +45,7 @@ const routesForUser = [
         path: "/ecotoss",
         element: <UserEcoIC />,
         name: 'Covoiturage',
+        hidden: true,
     },
     {
         path: "/team/:id",
@@ -128,6 +129,7 @@ const routesForRespoDeleg = [
         path: "/ecotoss",
         element: <UserEcoIC />,
         name: 'Covoiturage',
+        hidden: true,
     },
 ]
 
