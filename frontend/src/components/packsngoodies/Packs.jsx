@@ -16,7 +16,7 @@ function Pack() {
     },
     {
       price: "54€",
-      title: "Lunch only",
+      title: "Déjeuners seulement",
       details: [
         "Inscription au tournoi",
         "Accès aux activités",
@@ -26,7 +26,7 @@ function Pack() {
     },
     {
       price: "62€",
-      title: "Full restauration",
+      title: "Restauration complète",
       details: [
         "Inscription au tournoi",
         "Accès aux activités",
@@ -36,37 +36,24 @@ function Pack() {
     },
     {
       price: "73€",
-      title: "Hébergement en tente",
+      title: "Hébergement en tente (hors IDF)",
       details: [
         "Inscription au tournoi",
         "Accès aux activités",
         "Accès à la soirée",
-        "Petit Dej, Déjeuner et dîner",
-        "Hébergement en tente",
-        "Réservé aux écoles en dehors d'IDF",
-
+        "Petit-déjeuner, déjeuner et dîner",
+        "Hébergement",
       ],
     },
     {
       price: "63€",
-      title: "Hébergement chez un ami",
+      title: "Hébergement en résidence",
       details: [
         "Inscription au tournoi",
         "Accès aux activités",
         "Accès à la soirée",
-        "Petit Dej, Déjeuner et dîner",
-        "Hébergement en résidence chez un ami",
-      ],
-    },
-    {
-      price: "55€",
-      title: "Hébergement chez un ami sans dîner",
-      details: [
-        "Inscription au tournoi",
-        "Accès aux activités",
-        "Accès à la soirée",
-        "Petit Dej et Déjeuner",
-        "Hébergement en résidence chez un ami ",
+        "Petit-déjeuner, déjeuner et dîner",
+        "Hébergement en résidence",
       ],
     },
   ];
@@ -194,67 +181,6 @@ function Pack() {
         ))}
       </Box>
 
-      <Box sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                py: 3,
-                background: 'transparent', // Fond transparent pour conserver le dégradé général
-                mt: 5,
-            }}>
-                <Typography sx={{
-                    color: 'white',
-                    fontWeight: 'bold',
-                    fontSize: '2rem',
-                }}>
-                    Suppléments
-                </Typography>
-            </Box>
-            
-            <Box sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                gap: 2,
-                overflowX: 'auto',
-                px: 10,
-                py: 3,
-            }}>
-                {options.map((option, index) => (
-                    <Box
-                        key={index}
-                        sx={{
-                            p: 3,
-                            width: '8rem',
-                            height: '8rem',
-                            background: 'linear-gradient(180deg, #F4EDEC 0%, #E5DDEC 100%)', // Dégradé dans les boxes
-                            borderRadius: '10px',
-                            boxShadow: 3,
-                        }}
-                    >
-                        {/* Prix de l'option au-dessus du nom */}
-                        <Typography sx={{
-                            color: 'black',
-                            fontWeight: 'bold',
-                            fontSize: { xs: '1.5rem', md: '1.8rem' },
-                            textAlign: 'center',
-                        }}>
-                            {option.price}
-                        </Typography>
-
-                        {/* Nom de l'option */}
-                        <Typography sx={{
-                            color: 'black',
-                            fontWeight: 'bold',
-                            fontSize: '1.25rem',
-                            textAlign: 'center',
-                            mt: 0.5,  // Réduction de la marge sous le nom de l'option
-                        }}>
-                            {option.title}
-                        </Typography>
-                    </Box>
-                ))}
-            </Box>
             
         </Box>
   );

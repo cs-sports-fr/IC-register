@@ -88,17 +88,18 @@ const SuperAdminPacksStats = () => {
     const fetchFilterData = async () => {
       try {
         // Fetch sports
+        const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F'];
         const sportsResponse = await ApiICConnected.get('/sports');
-        setSports(sportsResponse.data);
-        
-        // Fetch schools and sort alphabetically
+        setSports(sportsResponse.data.filter(s => ALLOWED_SPORTS.includes(s.sport)));
+
+        // Fetch schools and sort alphabetically, sans les écoles exclues
         const schoolsResponse = await ApiICConnected.get('/schools');
-        const sortedSchools = schoolsResponse.data.sort((a, b) => 
-          a.name.localeCompare(b.name)
-        );
+        const sortedSchools = schoolsResponse.data
+          .filter(s => s.name.toLowerCase().includes('centrale'))
+          .sort((a, b) => a.name.localeCompare(b.name));
         setSchools(sortedSchools);
-        
-        // Fetch packs
+
+        // Fetch packs (tous les packs de la DB)
         const packsResponse = await ApiICConnected.get('/packs');
         setPacks(packsResponse.data);
         

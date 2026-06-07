@@ -32,7 +32,7 @@ const DelegationDistances = () => {
             try {
                 setLoading(true);
                 const response = await ApiICConnected.get('/schools/delegations/distances');
-                setSchools(response.data);
+                setSchools(response.data.filter(s => s.name.toLowerCase().includes('centrale')));
                 setError(null);
             } catch (err) {
                 console.error('Error fetching delegation distances:', err);

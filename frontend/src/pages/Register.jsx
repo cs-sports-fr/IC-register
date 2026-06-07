@@ -112,9 +112,9 @@ const Register = () => {
         axios.all(endpoints.map(url => ApiICNotConnected.get(url)))
             .then(axios.spread((...responses) => {
                 // Sort schools alphabetically by name before setting state
-                const sortedSchools = [...responses[0].data].sort((a, b) => 
-                    a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' })
-                );
+                const sortedSchools = [...responses[0].data]
+                    .filter(s => s.name.toLowerCase().includes('centrale'))
+                    .sort((a, b) => a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' }));
                 setSchools(sortedSchools);
             })).catch((error) => {
                 console.log(error);

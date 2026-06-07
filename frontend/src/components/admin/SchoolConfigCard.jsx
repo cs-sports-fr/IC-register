@@ -10,7 +10,7 @@ const SchoolConfigCard = () => {
     const [schools, setSchools] = useState([]);
     const fetchData = () => {
         ApiICConnected.get('/schools').then(response => {
-            setSchools(response.data);
+            setSchools(response.data.filter(s => s.name.toLowerCase().includes('centrale')));
         }
         ).catch(error => {
             console.log(error);

@@ -194,13 +194,14 @@ const SuperAdminParticipants = () => {
       try {
         // Fetch sports
         const sportsResponse = await ApiICConnected.get('/sports');
-        setSports(sportsResponse.data);
+        const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F'];
+        setSports(sportsResponse.data.filter(s => ALLOWED_SPORTS.includes(s.sport)));
         
         // Fetch schools and sort alphabetically
         const schoolsResponse = await ApiICConnected.get('/schools');
-        const sortedSchools = schoolsResponse.data.sort((a, b) => 
-          a.name.localeCompare(b.name)
-        );
+        const sortedSchools = schoolsResponse.data
+          .filter(s => s.name.toLowerCase().includes('centrale'))
+          .sort((a, b) => a.name.localeCompare(b.name));
         setSchools(sortedSchools);
         
         // Fetch packs

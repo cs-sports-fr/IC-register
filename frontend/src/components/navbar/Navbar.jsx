@@ -32,7 +32,7 @@ const Navbar = ({ navigation }) => {
                         <Box>
                             <a href="/">
                             <img
-                                src={isDarkMode ? "/images/logo_ic_light.png" : "/images/logo_ic_dark.png"}
+                                src="/images/logo_ic.png"
                                 alt="Logo IC"
                                 width={40}
                                 height={40}

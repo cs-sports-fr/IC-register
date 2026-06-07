@@ -107,7 +107,8 @@ const SuperAdminDashboard = () => {
     const fetchSports = () => {
         ApiICConnected.get('/sports')
             .then((response) => {
-                setSports(response.data);
+                const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F'];
+                setSports(response.data.filter(s => ALLOWED_SPORTS.includes(s.sport)));
             })
             .catch((error) => {
                 console.log("Error fetching sports:", error);
@@ -251,10 +252,11 @@ const SuperAdminDashboard = () => {
                         onChange={handleChangeSport}
                         variant="outlined"
                         fullWidth
+                        sx={{ '& .MuiSelect-select': { color: '#101218' }, '& .MuiInputBase-input': { color: '#101218' } }}
                     >
-                        <MenuItem value="">Tous les sports</MenuItem>
+                        <MenuItem value="" sx={{ color: 'text.black' }}>Tous les sports</MenuItem>
                         {sports.map((sport) => (
-                            <MenuItem key={sport.id} value={sport.id}>
+                            <MenuItem key={sport.id} value={sport.id} sx={{ color: 'text.black' }}>
                                 {sport.sport}
                             </MenuItem>
                         ))}
