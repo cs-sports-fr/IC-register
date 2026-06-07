@@ -38,10 +38,6 @@ function RespoDelegDashboard() {
             <Navbar navigation={routesForUser} />
             <Box sx={{ display: 'flex', bgcolor: 'background.drawer', color: 'primary.contrastText' }}>
                 <Grid container spacing={0} sx={{ mx: 8, my: 4 }}>
-                <Grid item xs={12} md={12} sx={{ p: 2, bgcolor: 'background.drawer' }}>
-                        <UserInsurance minHeight={'25vh'}  />
-                    </Grid>
-
                     <Grid item xs={12} sx={{ p: 2, bgcolor: 'background.drawer' }}>
                         <UserTimeline teams={teams} />
                     </Grid>

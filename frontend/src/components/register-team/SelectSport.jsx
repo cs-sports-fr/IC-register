@@ -2,11 +2,20 @@ import { Autocomplete, Box, Button, ListItem, ListItemText, TextField, Typograph
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
+const ALLOWED_SPORTS = [
+    'Football M', 'Football F',
+    'Rugby M', 'Rugby F',
+    'Volley M', 'Volley F',
+    'Basket M', 'Basket F',
+];
+
 const SelectSport = ({ callback, sports, callbackType }) => {
 
     const [sportId, setSportId] = useState(null);
 
-    const sportsOptions = sports.flatMap((sport) => {
+    const filteredSports = sports.filter((sport) => ALLOWED_SPORTS.includes(sport.sport));
+
+    const sportsOptions = filteredSports.flatMap((sport) => {
         if (sport.sport !== 'Escrime') {
             return [{ ...sport, optionId: `${sport.id}` }];
         }
