@@ -15,7 +15,7 @@ from prisma.types import (
     ParticipantWhereInput,
     ParticipantUpdateInput,
 )
-from prisma.enums import Gender, EnumUserStatus, mailClient, ClassementTennis, ArmeEscrime
+from enums import Gender, EnumUserStatus, mailClient, ClassementTennis, ArmeEscrime
 from pydantic import BaseModel
 
 from infra.utils import get_html_template_file, fill_template  # type: ignore

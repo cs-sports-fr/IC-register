@@ -10,7 +10,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt  # type: ignore
-from prisma.enums import EnumUserStatus, mailClient
+from enums import EnumUserStatus, mailClient
 from passlib.context import CryptContext  # type: ignore
 
 from prisma.models import User

@@ -668,7 +668,7 @@ async def validate_participant_licence(
 
 from typing import Optional, List
 from fastapi import Query
-from prisma.enums import TeamStatus
+from enums import TeamStatus
 
 @team_participants_router.get("/packs/statistics")
 async def get_pack_statistics(

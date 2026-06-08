@@ -17,7 +17,7 @@ from prisma.types import (
     TeamUpdateInput,
     _IntIncrementInput,
 )
-from prisma.enums import PaymentStatus
+from enums import PaymentStatus
 
 from infra.prisma import getPrisma  # type: ignore
 

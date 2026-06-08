@@ -11,7 +11,7 @@ from prisma.types import (
     ParticipantWhereInput,
     ParticipantUpdateInput,
 )
-from prisma.enums import EnumUserStatus
+from enums import EnumUserStatus
 from pydantic import BaseModel
 
 from infra.prisma import getPrisma  # type: ignore

@@ -194,7 +194,7 @@ const SuperAdminParticipants = () => {
       try {
         // Fetch sports
         const sportsResponse = await ApiICConnected.get('/sports');
-        const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F'];
+        const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F', 'Spike', 'Pétanque'];
         setSports(sportsResponse.data.filter(s => ALLOWED_SPORTS.includes(s.sport)));
         
         // Fetch schools and sort alphabetically

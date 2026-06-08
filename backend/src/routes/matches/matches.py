@@ -12,7 +12,7 @@ from typing import Optional
 from fastapi import HTTPException
 import random
 import math
-from prisma.enums import PhaseType
+from enums import PhaseType
 from enum import Enum
 from fastapi import Query
 

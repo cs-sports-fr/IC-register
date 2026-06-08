@@ -12,7 +12,7 @@ from prisma.types import (
     PaymentUpdateInput,
     UserArgsFromPayment,
 )
-from prisma.enums import PaymentStatus
+from enums import PaymentStatus
 
 from routes.payment.utils import (  # type: ignore
     check_lydia_payment_state,

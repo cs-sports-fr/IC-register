@@ -7,6 +7,7 @@ const ALLOWED_SPORTS = [
     'Rugby M', 'Rugby F',
     'Volley M', 'Volley F',
     'Basket M', 'Basket F',
+    'Spike', 'Pétanque',
 ];
 
 const SelectSport = ({ callback, sports, callbackType }) => {

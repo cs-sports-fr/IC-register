@@ -22,7 +22,7 @@ import {
   
     // Fetch sports for dropdown
     useEffect(() => {
-      const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F'];
+      const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F', 'Spike', 'Pétanque'];
       ApiICConnected.get('/sports').then(res => setSports(res.data.filter(s => ALLOWED_SPORTS.includes(s.sport))));
     }, []);
   

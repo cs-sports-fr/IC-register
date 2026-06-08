@@ -2,7 +2,7 @@ from prisma.types import UserCreateInput, _UserWhereUnique_email_Input
 
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel
-from prisma.enums import EnumUserStatus
+from enums import EnumUserStatus
 from passlib.context import CryptContext  # type: ignore
 
 from infra.prisma import getPrisma  # type: ignore

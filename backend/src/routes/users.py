@@ -4,7 +4,7 @@ from typing import Annotated, List
 from fastapi import APIRouter, Depends, HTTPException
 
 from prisma.models import User
-from prisma.enums import EnumUserStatus
+from enums import EnumUserStatus
 from prisma.types import (
     _UserWhereUnique_id_Input,
     UserInclude,

@@ -88,7 +88,7 @@ const SuperAdminPacksStats = () => {
     const fetchFilterData = async () => {
       try {
         // Fetch sports
-        const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F'];
+        const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F', 'Spike', 'Pétanque'];
         const sportsResponse = await ApiICConnected.get('/sports');
         setSports(sportsResponse.data.filter(s => ALLOWED_SPORTS.includes(s.sport)));
 

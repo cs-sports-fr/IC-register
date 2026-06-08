@@ -3,7 +3,7 @@ from typing import List, Optional, Dict
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 from prisma.models import Team, Place, Sport
-from prisma.enums import PhaseType
+from enums import PhaseType
 from infra.prisma import getPrisma
 from routes.auth.utils import check_token, check_admin
 

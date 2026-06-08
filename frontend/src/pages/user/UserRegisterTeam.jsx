@@ -134,7 +134,7 @@ const UserRegisterTeam = () => {
         const endpoints = ['/sports'];
         axios.all(endpoints.map(url => ApiICConnected.get(url)))
             .then(axios.spread((...responses) => {
-                const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F'];
+                const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F', 'Spike', 'Pétanque'];
                 setSports(responses[0].data.filter(s => ALLOWED_SPORTS.includes(s.sport)));
             })).catch((error) => {
                 console.log(error);

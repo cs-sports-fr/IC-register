@@ -12,7 +12,7 @@ const ModifyUserStatus = ({ open, onClose, user }) => {
     const fetchSports = () => {
         ApiICConnected.get('sports')
             .then((response) => {
-                const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F'];
+                const ALLOWED_SPORTS = ['Football M', 'Football F', 'Rugby M', 'Rugby F', 'Volley M', 'Volley F', 'Basket M', 'Basket F', 'Spike', 'Pétanque'];
                 setSports(response.data.filter(s => ALLOWED_SPORTS.includes(s.sport)));
             }).catch((error) => {
                 console.log(error);

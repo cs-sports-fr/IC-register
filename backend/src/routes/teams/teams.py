@@ -12,7 +12,7 @@ from prisma.types import (
 )
 
 
-from prisma.enums import TeamStatus, EnumUserStatus
+from enums import TeamStatus, EnumUserStatus
 from .utils import (
     ParticipantInput,
     add_participant_to_team,

@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from prisma.models import Medal, Sport, School
 from infra.prisma import getPrisma
 from routes.auth.utils import check_token,check_admin
-from prisma.enums import MedalType
+from enums import MedalType
 # Initialize the router and Prisma client
 medals_router = APIRouter(
     prefix="/medals",
